@@ -429,6 +429,12 @@
   .topnav { box-shadow: none; border: 1px solid var(--line); }
   .ci-num { color: var(--fg); font-family: var(--font-serif); font-weight: 600; }
 
+  /* Align case side fields with the governance block */
+  .case-side .fields { padding-inline: 18px; }
+  .case-side .fields.gov { padding: 16px 18px; }
+  .case-side .fields, .case-side .fields.gov { grid-template-columns: 6.5rem minmax(0, 1fr); column-gap: 20px; }
+  @media (max-width: 420px) { .case-side .fields, .case-side .fields.gov { grid-template-columns: minmax(0, 1fr); } }
+
   /* Experience timeline */
   .timeline { list-style: none; display: flex; flex-direction: column; border-top: 2px solid var(--fg); }
   .job {
@@ -529,7 +535,6 @@
 
   <section aria-labelledby="how">
     <div class="section-head">
-      <span class="eyebrow">Approach</span>
       <h2 id="how">Key considerations</h2>
       <p>Responsible AI principles I apply to every automation, based on my AAIR training and audit work.</p>
     </div>
@@ -564,9 +569,8 @@
 
   <section aria-labelledby="work">
     <div class="section-head">
-      <span class="eyebrow">5 case studies</span>
       <h2 id="work">Selected automations</h2>
-      <p>Ranked from strongest to lightest. Open any of them to see how it works. Examples are from recent roles, anonymized and simplified due to confidentiality.</p>
+      <p>How I use AI in risk, access and audit work, from the problem to the controls. Details are anonymized.</p>
       <div class="legend" aria-label="Flowchart key">
         <span><i></i>Source data</span>
         <span><i class="ai"></i>AI step</span>
@@ -587,7 +591,7 @@
         <div class="case-head">
           <span class="case-kind">Testing and assurance</span>
           <h3>Access redesign UAT, built from real usage</h3>
-          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">In an access redesign, every user had to keep their current access, with <mark class="hl">no operational impact</mark>.</span></p>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">During an access redesign project, every user had to keep their current access, with <mark class="hl">no operational impact</mark>.</span></p>
         </div>
         <div class="case-result">
           <span>Outcome</span>
@@ -610,7 +614,7 @@
         </figure>
         <div class="case-main">
           <span class="case-label">Approach</span>
-          <p>For each tester, the system audit log showed which transactions they had used over a recent period, and their current roles were exported. An LLM linked those transactions to the documented process flows and wrote a test script per user. The steps follow the actual business process, and the expected outcome of each step is defined by that process.</p><p>The scripts were shared in SharePoint, with a dashboard to track progress.</p>
+          <p>For each tester, the system audit log showed which transactions they had used over a selected period, and their current roles were exported. An LLM linked those transactions to the documented process flows and wrote a test script per user. The steps follow the actual business process, and the expected outcome of each step is defined by that process.</p><p>The scripts were shared in SharePoint, with a dashboard to track progress.</p>
         </div>
         <div class="case-side">
           <dl class="fields">
@@ -640,7 +644,7 @@
         <div class="case-head">
           <span class="case-kind">GRC and access risk</span>
           <h3>AI-assisted SoD ruleset</h3>
-          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">The business processes were documented in detail, but there were <mark class="hl">too many process flows to review manually</mark> for segregation of duties risks and to map to system requirements. The SoD ruleset was <mark class="hl">not clearly mapped to the business processes</mark>.</span></p>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">The business processes were documented in detail, but there were <mark class="hl">too many process flows to review manually</mark> for segregation of duties risks and to map to system requirements within the project time frame and with the available resources. The SoD ruleset was <mark class="hl">not clearly mapped to the business processes</mark>.</span></p>
         </div>
         <div class="case-result">
           <span>Outcome</span>
@@ -800,19 +804,19 @@
       <details class="case-item" name="case">
         <summary>
           <span class="ci-num">05</span>
-          <span class="ci-text"><span class="ci-kind">Delivery</span><strong>Project plan to Jira, kept in sync</strong><span class="ci-sum">Turned a written project plan into Jira tickets and a dashboard that stays in sync.</span></span>
+          <span class="ci-text"><span class="ci-kind">Delivery</span><strong>Automated project management and tracking</strong><span class="ci-sum">Turned a written project plan into Jira tickets and a dashboard that stays in sync.</span></span>
           <span class="ci-chev" aria-hidden="true"></span>
         </summary>
       <article class="case"><div class="case-core">
         <div class="case-head">
           <span class="case-kind">Delivery</span>
-          <h3>Project plan to Jira, kept in sync</h3>
+          <h3>Automated project management and tracking</h3>
           <p class="case-problem"><span class="lbl">Problem</span><span class="txt">The project plan lived in a document and the work lived in Jira, so status had to be <mark class="hl">updated in two places</mark>.</span></p>
         </div>
         <div class="case-result">
           <span>Outcome</span>
           <dl class="ba">
-            <dt>Before</dt><dd>Status was updated in both the plan and Jira.</dd>
+            <dt>Before</dt><dd>Manual, time-consuming documentation in multiple places.</dd>
             <dt>After</dt><dd>Status is kept in Jira only, and the dashboard follows every week.</dd>
           </dl>
         </div>
@@ -862,7 +866,6 @@
 
   <section aria-labelledby="certs">
     <div class="section-head">
-      <span class="eyebrow">Credentials</span>
       <h2 id="certs">Certifications</h2>
       <p>Risk and audit foundations, with a current focus on AI governance.</p>
     </div>
@@ -905,7 +908,6 @@
 
   <section aria-labelledby="career">
     <div class="section-head">
-      <span class="eyebrow">Career</span>
       <h2 id="career">Experience</h2>
       <p>SAP authorization, IT audit and risk advisory.</p>
     </div>
@@ -949,12 +951,11 @@
   </section>
 
   <section class="contact" aria-labelledby="contact">
-    <span class="eyebrow">Contact</span>
     <h2 id="contact">Let's talk</h2>
-    <p>Happy to talk about AI governance, access risk and practical AI automation. The easiest way to reach me is on LinkedIn or by email.</p>
+    <p>I enjoy learning about new technology, automation and process improvement, and I'm always happy to talk about AI governance, access risk or practical AI automation. The easiest way to reach me is on LinkedIn or by email.</p>
     <div class="cta">
       <a class="btn primary" href="https://www.linkedin.com/in/zsofia-kalvin/">Message on LinkedIn <span class="ic" aria-hidden="true">&#8599;</span></a>
-      <a class="btn" href="mailto:kalvin.zsofia@gmail.com">kalvin.zsofia@gmail.com <span class="ic" aria-hidden="true">&#8599;</span></a>
+      <a class="btn" href="mailto:kalvin.zsofia@gmail.com">kalvin.zsofia@gmail.com <span class="ic" aria-hidden="true">@</span></a>
     </div>
   </section>
 
