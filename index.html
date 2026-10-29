@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zsófia Kálvin | AI Risk and Governance, Hands-on AI Automation</title>
+<meta name="description" content="Zsófia Kálvin: AI risk and governance, GRC and IAM, with hands-on AI automation case studies built human-in-the-loop, with traceability and clear ownership. ISACA AAIR, CRISC.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* Layout: light, airy single column; a highlighted headline as the one bold moment, ranked case accordion, principle cards, dark contact block. */
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --fg: #111111;
+    --muted: #5c5c5a;
+    --line: #e3e3df;
+    --accent: #111111;
+    --accent-soft: #f2f2ef;
+    --hl: #dfff4f;
+    --hl-soft: #f3fcd0;
+    --pending: #8a5a00;
+    --pending-soft: #fbf1dc;
+    --shell: #f6f6f3;
+    --ink: #111111;
+    --ink-fg: #f1f3ee;
+    --ink-muted: #a4aab1;
+    --ink-line: rgba(255, 255, 255, 0.14);
+    --ink-accent: #dfff4f;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --font-display: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "IBM Plex Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0c0c0c; --surface: #141414; --fg: #f2f2ef; --muted: #a3a3a0; --line: #2b2b2a;
+      --accent: #f2f2ef; --accent-soft: #1f1f1f; --hl-soft: #262c10; --shell: #111111;
+      --pending: #f0c674; --pending-soft: #3a2e14; --ink: #1a1a1a;
+      --shadow: none; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c0c0c; --surface: #141414; --fg: #f2f2ef; --muted: #a3a3a0; --line: #2b2b2a;
+    --accent: #f2f2ef; --accent-soft: #1f1f1f; --hl-soft: #262c10; --shell: #111111;
+    --pending: #f0c674; --pending-soft: #3a2e14; --ink: #1a1a1a;
+    --shadow: none; color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: var(--font-body); font-size: 1rem; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    max-width: 1040px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: clamp(40px, 6vw, 72px) 56px;
+    display: flex; flex-direction: column; gap: clamp(64px, 10vw, 120px);
+  }
+  a { color: inherit; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  /* Hero */
+  .hero-band { background: var(--bg); color: var(--fg); }
+  .hero-inner {
+    max-width: 1040px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 20px clamp(40px, 6vw, 72px);
+    display: flex; flex-direction: column; gap: clamp(48px, 8vw, 96px);
+  }
+  .topnav {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 8px 8px 8px 22px; border-radius: 999px; background: var(--surface); box-shadow: var(--shadow);
+  }
+  .brand { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
+  .navlinks { display: flex; gap: 2px; flex-wrap: wrap; }
+  .navlinks a {
+    text-decoration: none; color: var(--muted); font-size: 0.9rem; font-weight: 500;
+    padding: 8px 14px; border-radius: 999px; transition: color .3s cubic-bezier(.32,.72,0,1), background-color .3s cubic-bezier(.32,.72,0,1);
+  }
+  .navlinks a:hover { color: var(--fg); background: var(--bg); }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 48px 64px; align-items: center; }
+  .hero-copy { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+  .role { color: var(--accent); font-weight: 600; font-size: 0.98rem; }
+  .creds { display: flex; flex-wrap: wrap; gap: 8px; }
+  .creds span { font-size: 0.84rem; font-weight: 600; padding: 5px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--fg); }
+  .creds span.plain { font-weight: 500; color: var(--muted); background: none; border-color: transparent; padding-inline: 4px; }
+  .hero-copy h1 {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(2.7rem, 6vw, 5rem); line-height: 1; letter-spacing: -0.045em; text-wrap: balance;
+  }
+  .hero-copy h1 .rule { display: block; }
+  .mark {
+    color: #131518; padding: 0 0.06em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+    background: linear-gradient(var(--hl), var(--hl)) no-repeat 0 88% / 100% 46%;
+    animation: swipe 0.9s cubic-bezier(.65,0,.35,1) 0.35s both;
+  }
+  @keyframes swipe { from { background-size: 0% 46%; } }
+  mark.hl {
+    color: var(--fg); padding: 0 0.12em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+    background: linear-gradient(var(--hl), var(--hl)) no-repeat 0 85% / 100% 55%;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) mark.hl { background-size: 100% 100%; color: #131518; border-radius: 3px; } }
+  :root[data-theme="dark"] mark.hl { background-size: 100% 100%; color: #131518; border-radius: 3px; }
+  .lede { font-size: clamp(1.03rem, 1.5vw, 1.16rem); color: var(--muted); max-width: 56ch; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 12px; text-decoration: none;
+    font-weight: 600; font-size: 0.95rem; color: var(--fg); background: var(--surface);
+    padding: 6px 6px 6px 22px; border-radius: 999px; border: 1px solid var(--line);
+    transition: transform .4s cubic-bezier(.32,.72,0,1), box-shadow .4s cubic-bezier(.32,.72,0,1);
+  }
+  .btn .ic {
+    width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center;
+    background: var(--bg); font-size: 0.95rem; transition: transform .4s cubic-bezier(.32,.72,0,1);
+  }
+  .btn.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .btn.primary .ic { background: var(--hl); color: #131518; }
+  .btn:hover { box-shadow: var(--shadow); }
+  .btn:hover .ic { transform: translate(2px, -2px) scale(1.05); }
+  .btn:active { transform: scale(0.98); }
+  .btn:focus-visible, .navlinks a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* Path panel */
+  .sig-shell { padding: 6px; border-radius: 28px; background: var(--shell); border: 1px solid var(--line); min-width: 0; }
+  .sig-core {
+    border-radius: 22px; padding: 26px 26px 22px; background: var(--surface); box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .sig-title { font-size: 0.88rem; font-weight: 600; color: var(--muted); }
+  .sig { list-style: none; position: relative; display: flex; flex-direction: column; gap: 18px; }
+  .sig::before { content: ""; position: absolute; left: 11px; top: 14px; bottom: 14px; width: 1px; background: var(--line); }
+  .sig li {
+    position: relative; padding-left: 40px; display: flex; flex-direction: column;
+    animation: rise .7s cubic-bezier(.16,1,.3,1) both; animation-delay: calc(var(--i) * 140ms + 500ms);
+  }
+  .sig li::before {
+    content: ""; position: absolute; left: 4px; top: 5px; width: 15px; height: 15px; border-radius: 999px;
+    background: var(--surface); border: 1.5px solid var(--muted);
+  }
+  .sig li.ai::before { border-color: var(--accent); background: var(--accent-soft); }
+  .sig li.human::before { background: var(--fg); border-color: var(--fg); }
+  .sig li:last-child::before { background: var(--hl); border-color: #131518; }
+  .sig b { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; letter-spacing: -0.01em; }
+  .sig li.ai b { color: var(--accent); }
+  .sig span { font-size: 0.88rem; color: var(--muted); }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+
+  /* Section heads */
+  .section-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+  .section-head h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -0.02em; text-wrap: balance; }
+  .section-head p { color: var(--muted); max-width: 60ch; }
+
+  /* Principles */
+  .principles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 56px; border-top: 2px solid var(--fg); }
+  .principle { padding-block: 24px; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .principle h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
+  .principle p { color: var(--muted); font-size: 0.97rem; }
+
+  /* Case studies */
+  .cases { display: flex; flex-direction: column; gap: 24px; }
+  .case {
+    padding: 6px; border-radius: 28px; background: var(--shell);
+    border: 1px solid var(--line);
+  }
+  .case-core {
+    display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 28px 56px;
+    padding: clamp(22px, 4vw, 40px); border-radius: 22px; background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+  .case-head { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .case-problem { display: flex; flex-direction: column; gap: 4px; font-size: 1.1rem; line-height: 1.5; color: var(--fg); max-width: 48ch; }
+  .case-problem .lbl, .case-label { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+  .case-result {
+    align-self: start; background: var(--bg); border-radius: 16px; padding: 20px 22px;
+    display: flex; flex-direction: column; gap: 6px; min-width: 0;
+  }
+  .case-result span { font-size: 0.85rem; font-weight: 700; color: var(--fg); }
+  .case-result p { font-weight: 500; line-height: 1.55; }
+  .case-main { display: flex; flex-direction: column; gap: 12px; min-width: 0; padding-top: 4px; }
+  .case-kind { font-size: 0.85rem; font-weight: 600; color: var(--accent); }
+  .case h3 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.35rem, 2.4vw, 1.65rem); line-height: 1.2; letter-spacing: -0.015em; text-wrap: balance; }
+  .case-main p { color: var(--muted); max-width: 52ch; font-size: 0.97rem; }
+
+  .fields { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 14px 20px; align-content: start; margin: 0; }
+  .fields dt { font-size: 0.85rem; font-weight: 600; color: var(--muted); padding-top: 2px; }
+  .fields dd { margin: 0; min-width: 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 0.82rem; font-weight: 500; padding: 2px 10px; border-radius: 4px; background: var(--surface); border: 1px solid var(--line); }
+  .todo {
+    display: inline-block; font-size: 0.85rem; font-style: italic; color: var(--pending);
+    background: var(--pending-soft); padding: 1px 8px; border-radius: 4px;
+  }
+  .tag.todo { border-color: transparent; }
+
+
+  /* Case side panels */
+  .case-side { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+  .fields.gov { background: var(--accent-soft); border-radius: 8px; padding: 16px 18px; }
+  .fields.gov dt { color: var(--accent); }
+
+  /* Flowchart */
+  .flow { grid-column: 1 / -1; margin: 0; padding-block: 8px 4px; border-block: 1px solid var(--line); padding-block: 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .flow figcaption { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+  .flow ol { list-style: none; display: flex; align-items: stretch; gap: 6px; }
+  .step {
+    flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 2px;
+    padding: 10px 12px; border-radius: 6px; font-size: 0.88rem; line-height: 1.35;
+    background: var(--surface); border: 1px solid var(--line);
+  }
+  .step span { font-size: 0.75rem; font-weight: 600; color: var(--muted); }
+  .step.ai { border-color: var(--accent); }
+  .step.ai span { color: var(--accent); }
+  .step.human { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .step.human span { color: var(--bg); opacity: 0.75; }
+  .step.out { background: var(--bg); border-color: transparent; }
+  .step.todo { border: 1px dashed var(--pending); color: var(--pending); background: var(--pending-soft); font-style: italic; }
+  .step.todo span { color: var(--pending); }
+  .arrow { flex: 0 0 14px; align-self: center; height: 14px; position: relative; }
+  .arrow::before { content: ""; position: absolute; left: 0; right: 3px; top: 50%; border-top: 1.5px solid var(--muted); }
+  .arrow::after { content: ""; position: absolute; right: 1px; top: 50%; width: 6px; height: 6px; border-top: 1.5px solid var(--muted); border-right: 1.5px solid var(--muted); transform: translateY(-50%) rotate(45deg); }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 0.85rem; color: var(--muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--line); background: var(--surface); display: inline-block; }
+  .legend i.ai { border-color: var(--accent); }
+  .legend i.human { background: var(--fg); border-color: var(--fg); }
+  @media (max-width: 760px) {
+    .flow ol { flex-direction: column; }
+    .step { flex: none; }
+    .arrow { flex: 0 0 14px; width: 14px; align-self: flex-start; margin-left: 18px; transform: rotate(90deg); }
+  }
+
+
+  /* Ranked case list */
+  .case-item { border: 1px solid var(--line); border-radius: 20px; background: var(--surface); transition: border-color .4s cubic-bezier(.32,.72,0,1), box-shadow .4s cubic-bezier(.32,.72,0,1), transform .4s cubic-bezier(.32,.72,0,1); }
+  .case-item:hover, .case-item[open] { border-color: var(--accent); }
+  .case-item:not([open]):hover { transform: translateY(-2px); box-shadow: 0 14px 30px -18px rgba(20, 32, 43, 0.25); }
+  .case-item[open] { box-shadow: 0 18px 40px -22px rgba(20, 32, 43, 0.3); }
+  .case-item > summary {
+    list-style: none; cursor: pointer; display: grid; grid-template-columns: 3rem minmax(0, 1fr) 28px;
+    gap: 16px; align-items: center; padding: 18px 22px; border-radius: 20px;
+  }
+  .case-item[open] > summary { border-bottom: 1px solid var(--line); border-radius: 20px 20px 0 0; }
+  .case-item > summary::-webkit-details-marker { display: none; }
+  .case-item > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .ci-num { font-family: var(--font-display); font-weight: 800; font-size: 1.7rem; letter-spacing: -0.04em; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .ci-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .ci-kind { font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+  .ci-text strong { font-family: var(--font-display); font-weight: 700; font-size: 1.12rem; line-height: 1.3; }
+  .ci-sum { color: var(--muted); font-size: 0.93rem; }
+  .ci-chev { width: 28px; height: 28px; border-radius: 999px; background: var(--bg); position: relative; transition: transform .35s cubic-bezier(.32,.72,0,1); }
+  .ci-chev::before { content: ""; position: absolute; left: 50%; top: 45%; width: 7px; height: 7px; border-right: 1.5px solid var(--fg); border-bottom: 1.5px solid var(--fg); transform: translate(-50%, -50%) rotate(45deg); }
+  .case-item[open] .ci-chev { transform: rotate(180deg); }
+  .case-item .case { border: 0; background: none; padding: 6px 6px 6px; border-radius: 0; }
+  .case-item .case-head .case-kind, .case-item .case-head h3 { display: none; }
+  .case-item .case-core { box-shadow: none; background: var(--bg); }
+  .case-item .case-result { background: var(--hl-soft); }
+  .case-item .step { background: var(--surface); }
+  .case-item .step.out, .step.out { background: var(--hl-soft); border-color: #c9e43a; }
+  .step.out span { color: var(--fg); }
+  strong.em { font-weight: 700; color: var(--fg); box-shadow: inset 0 -0.45em 0 var(--hl); }
+  .legend i.out { background: var(--hl-soft); border-color: #c9e43a; }
+  .case-item .step.human { background: var(--fg); }
+  .cases { gap: 12px; }
+  @media (max-width: 520px) { .case-item > summary { grid-template-columns: 2.2rem minmax(0, 1fr) 24px; gap: 12px; padding: 16px; } .ci-sum { display: none; } }
+
+  /* Polish pass */
+  .eyebrow {
+    align-self: flex-start; display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--accent); background: var(--accent-soft); padding: 5px 12px; border-radius: 999px;
+  }
+  .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--accent); }
+  .principles { border-top: 0; column-gap: 0; gap: 14px; }
+  .principle { border: 1px solid var(--line); border-radius: 24px; padding: 6px; background: var(--shell); }
+  .principle-core {
+    background: var(--surface); border-radius: 18px; padding: 24px 24px 22px; height: 100%;
+    display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 6px 16px; align-content: start;
+    box-shadow: var(--shadow);
+  }
+  .p-ic {
+    grid-row: span 2; width: 40px; height: 40px; border-radius: 12px; background: var(--accent-soft);
+    color: var(--accent); display: inline-flex; align-items: center; justify-content: center;
+  }
+  .p-ic svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .job.current .job-role strong::after {
+    content: "Current"; margin-left: 10px; vertical-align: 2px; font-family: var(--font-body);
+    font-size: 0.75rem; font-weight: 600;
+    color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 999px;
+  }
+  @media (max-width: 760px) { .principle-core { padding: 20px; } }
+
+
+  /* Outcome before/after */
+  .ba { display: grid; grid-template-columns: 4rem minmax(0, 1fr); gap: 8px 14px; margin: 0; }
+  .ba dt { font-size: 0.8rem; font-weight: 600; color: var(--muted); padding-top: 2px; }
+  .ba dd { margin: 0; font-weight: 500; line-height: 1.5; min-width: 0; }
+
+  /* Framework alignment */
+  .aligned { grid-column: 2; font-size: 0.82rem; color: var(--accent); font-weight: 500; }
+  .aligned-note { grid-column: 1 / -1; margin: 0; padding: 16px 30px; border-radius: 24px; border: 1px dashed var(--line); font-size: 0.88rem; color: var(--muted); display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 16px; align-items: center; }
+  .aligned-note .p-ic { grid-row: auto; width: 40px; height: 40px; background: var(--shell); color: var(--muted); }
+  @media (max-width: 760px) { .aligned-note { padding: 16px 26px; } }
+  .also { font-size: 0.88rem; color: var(--muted); }
+
+  /* Contact */
+  .contact { background: var(--ink); color: var(--ink-fg); border-radius: 28px; padding: clamp(28px, 5vw, 56px); display: flex; flex-direction: column; gap: 20px; }
+  .contact h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -0.03em; line-height: 1.1; }
+  .contact p { color: var(--ink-muted); max-width: 56ch; }
+  .contact .eyebrow { background: rgba(255,255,255,0.08); color: var(--ink-accent); }
+  .contact .eyebrow::before { background: var(--ink-accent); }
+  .contact .todo { color: var(--pending); }
+  .contact .btn { background: transparent; color: var(--ink-fg); border-color: var(--ink-line); }
+  .contact .btn .ic { background: rgba(255,255,255,0.1); }
+  .contact .btn.primary { background: var(--hl); color: #131518; border-color: var(--hl); }
+  .contact .btn.primary .ic { background: #131518; color: var(--hl); }
+  @media (max-width: 420px) { .ba { grid-template-columns: minmax(0, 1fr); gap: 2px; } .ba dd { margin-bottom: 8px; } }
+
+  /* Certifications */
+  .cert-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .cert-group {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 24px; display: flex; flex-direction: column; gap: 16px; min-width: 0;
+  }
+  .cert-group h3 { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--muted); }
+  .cert-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .cert { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .cert-name { display: flex; flex-direction: column; min-width: 0; }
+  .cert-name strong { font-weight: 600; line-height: 1.35; }
+  .cert-name span { font-size: 0.85rem; color: var(--muted); }
+  .cert-year { font-size: 0.9rem; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .cert-year.progress { color: var(--pending); font-style: italic; }
+
+
+  /* Certifications v2 */
+  .cert-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+  .cert-group { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 24px 26px; display: flex; flex-direction: column; gap: 14px; min-width: 0; box-shadow: var(--shadow); }
+  .cert-group h3 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--fg); }
+  .cert-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; }
+  .cert { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-block: 12px; border-top: 1px solid var(--line); }
+  .cert:first-child { border-top: 0; padding-top: 0; }
+  .cert-name { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .cert-name strong { font-weight: 600; line-height: 1.35; }
+  .cert-name span { font-size: 0.85rem; color: var(--muted); }
+  .cert-year { font-size: 0.9rem; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .edu { grid-column: 1 / -1; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; padding: 18px 26px; border-radius: 22px; border: 1px dashed var(--line); }
+  .edu-lbl { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--muted); min-width: 7rem; }
+  @media (max-width: 760px) { .cert-groups { grid-template-columns: minmax(0, 1fr); } .edu { flex-direction: column; align-items: flex-start; gap: 6px; } }
+
+
+  /* Navigation, spacing pass */
+  .navwrap {
+    position: sticky; top: 0; z-index: 10;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 12px);
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .navwrap .topnav { max-width: 1008px; margin: 0 auto; }
+  .navlinks { overflow-x: auto; scrollbar-width: none; flex-wrap: nowrap; }
+  .navlinks::-webkit-scrollbar { display: none; }
+  .navlinks a { white-space: nowrap; }
+  h2[id] { scroll-margin-top: 110px; }
+  .hero-inner { padding-block: clamp(40px, 6vw, 72px) clamp(24px, 4vw, 48px); gap: 0; }
+  .page { gap: clamp(56px, 7vw, 88px); padding-block: clamp(32px, 5vw, 56px) 48px; }
+  .section-head { margin-bottom: 24px; gap: 6px; }
+  .eyebrow { display: none; }
+  @media (max-width: 640px) {
+    .navlinks { display: flex; }
+    .topnav { padding: 6px 6px 6px 16px; }
+    .brand { display: none; }
+    .topnav { justify-content: flex-start; }
+  }
+
+
+  /* Type and density pass */
+  body { line-height: 1.6; font-size: 0.98rem; }
+  .hero-copy h1 { font-weight: 800; letter-spacing: -0.04em; font-size: clamp(2.5rem, 5.4vw, 4.4rem); line-height: 1.02; }
+  .section-head h2 { font-weight: 700; letter-spacing: -0.03em; font-size: clamp(1.7rem, 3.2vw, 2.4rem); }
+  .case h3, .ci-text strong { font-weight: 700; letter-spacing: -0.015em; }
+  .principle h3, .cert-group h3 { font-weight: 700; letter-spacing: -0.01em; }
+  .ci-num { font-weight: 700; }
+  .navwrap { padding-top: calc(env(safe-area-inset-top, 0px) + 10px); }
+  .hero-inner { padding-block: clamp(28px, 4vw, 48px) clamp(16px, 2.5vw, 28px); }
+  .hero-copy { gap: 18px; }
+  .page { gap: clamp(44px, 5.5vw, 68px); padding-block: clamp(24px, 3vw, 36px) 40px; }
+  .section-head { margin-bottom: 18px; }
+  .case-core { gap: 20px 40px; padding: clamp(18px, 3vw, 30px); }
+  .flow { padding-block: 16px; }
+  .principle-core { padding: 20px 22px; }
+  .cert-group { padding: 20px 22px; gap: 10px; }
+  .cert { padding-block: 10px; }
+  .job { padding-block: 14px; }
+  .contact { padding: clamp(24px, 4vw, 40px); gap: 14px; }
+  .sig-core { padding: 22px 22px 18px; gap: 14px; }
+  .sig { gap: 14px; }
+
+
+  /* Editorial black and white pass */
+  :root { --font-serif: "IBM Plex Serif", Georgia, "Times New Roman", serif; --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace; }
+  .ci-num { font-family: var(--font-mono) !important; font-weight: 500 !important; font-size: 1.15rem !important; letter-spacing: 0 !important; }
+  .step span, .case-kind, .ci-kind { font-family: var(--font-mono); font-weight: 500; letter-spacing: 0; }
+  .hero-copy h1 { letter-spacing: -0.03em; }
+  .section-head h2, .contact h2 { letter-spacing: -0.02em; }
+  .hero-copy h1, .section-head h2, .contact h2 { font-family: var(--font-serif); font-weight: 600; }
+  .hero-copy h1 { letter-spacing: -0.025em; line-height: 1; font-size: clamp(2.7rem, 6vw, 4.9rem); }
+  .section-head h2 { letter-spacing: -0.02em; font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
+  .contact h2 { letter-spacing: -0.02em; }
+  .section-head { border-top: 2px solid var(--fg); padding-top: 16px; }
+  .role { color: var(--fg); font-weight: 700; letter-spacing: 0.01em; }
+  .aligned { color: var(--muted); font-style: italic; font-weight: 500; }
+  .fields.gov { background: var(--shell); border: 1px solid var(--line); }
+  .fields.gov dt { color: var(--fg); }
+  .case-item, .principle, .case, .sig-shell { box-shadow: none; }
+  .case-item:not([open]):hover { box-shadow: none; transform: none; border-color: var(--fg); }
+  .case-item[open] { box-shadow: none; border-color: var(--fg); }
+  .case-item .case-core, .principle-core, .sig-core, .cert-group { box-shadow: none; }
+  .principle { background: none; border: 0; padding: 0; }
+  .principle-core { border: 1px solid var(--line); }
+  .p-ic { background: var(--shell); color: var(--fg); border: 1px solid var(--line); }
+  .step.ai { border: 1.5px solid var(--fg); }
+  .step.ai span { color: var(--fg); }
+  .sig li.ai b { color: var(--fg); }
+  .sig li.ai::before { background: var(--surface); border-color: var(--fg); box-shadow: none; }
+  .legend i.ai { border: 1.5px solid var(--fg); }
+  .topnav { box-shadow: none; border: 1px solid var(--line); }
+  .ci-num { color: var(--fg); font-family: var(--font-serif); font-weight: 600; }
+
+  /* Experience timeline */
+  .timeline { list-style: none; display: flex; flex-direction: column; border-top: 2px solid var(--fg); }
+  .job {
+    display: grid; grid-template-columns: 9rem minmax(0, 1fr) minmax(0, 1.3fr); gap: 6px 32px;
+    padding-block: 20px; border-bottom: 1px solid var(--line);
+  }
+  .job-dates { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 0.92rem; padding-top: 2px; }
+  .job-role { display: flex; flex-direction: column; min-width: 0; }
+  .job-role strong { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; line-height: 1.3; }
+  .job-role span { color: var(--muted); font-size: 0.92rem; }
+  .job p { color: var(--muted); font-size: 0.97rem; min-width: 0; }
+  .job.current .job-dates { color: var(--accent); font-weight: 600; }
+  .timeline { border-top: 0; }
+  .job:first-child { border-top: 1px solid var(--line); }
+
+  /* Footer */
+  footer {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px;
+    color: var(--muted); font-size: 0.9rem; padding-top: 24px; border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 860px) {
+    .job { grid-template-columns: 8rem minmax(0, 1fr); }
+    .job p { grid-column: 2; }
+  }
+  @media (max-width: 760px) {
+    .principles { grid-template-columns: minmax(0, 1fr); }
+    .case-core { grid-template-columns: minmax(0, 1fr); }
+    .hero-grid { grid-template-columns: minmax(0, 1fr); }
+    .cert-groups { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .job { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+    .job p { grid-column: auto; }
+  }
+  @media (max-width: 420px) {
+    .fields { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+    .fields dd { margin-bottom: 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+<link rel="canonical" href="https://zsofiakalvin.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zsofiakalvin.github.io/">
+<meta property="og:title" content="Zsófia Kálvin | AI Risk and Governance, Hands-on AI Automation">
+<meta property="og:description" content="Five anonymized AI automation case studies in GRC, IAM and IT audit, each human-in-the-loop with traceability and clear ownership. ISACA AAIR, CRISC.">
+<meta property="og:image" content="https://zsofiakalvin.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"Zsófia Kálvin","jobTitle":"AI risk, governance and automation","knowsAbout":["AI risk management","AI governance","Responsible AI","GRC","Identity and access management","IT audit","Segregation of duties","AI automation"],"sameAs":["https://www.linkedin.com/in/zsofia-kalvin/","https://github.com/zsofiakalvin"]}}</script>
+<style>html{scroll-behavior:smooth}</style>
+</head>
+<body>
+
+<div class="navwrap">
+    <nav class="topnav" aria-label="Sections">
+      <span class="brand">Zsófia Kálvin</span>
+      <div class="navlinks">
+        <a href="#how">Key considerations</a>
+        <a href="#work">Automations</a>
+        <a href="#certs">Certifications</a>
+        <a href="#career">Experience</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+</div>
+
+<header class="hero-band">
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="role">AI risk, governance and automation</span>
+        <div class="creds" aria-label="Credentials"><span>ISACA AAIR</span><span>CRISC</span><span class="plain">10+ years in IT audit, GRC and access management</span></div>
+        <h1>AI automation <span class="rule">with a <span class="mark">compliance mindset</span></span></h1>
+        <p class="lede">I use AI for process improvement and data-driven insights for decision making. With over 10 years of experience in IT systems support, risk advisory and IT audit, I build each automation with the principle of <mark class="hl">least privilege, human review, clear ownership and an audit trail</mark> in place.</p>
+        <div class="cta">
+          <a class="btn primary" href="https://www.linkedin.com/in/zsofia-kalvin/">LinkedIn <span class="ic" aria-hidden="true">&#8599;</span></a>
+          <a class="btn" href="https://github.com/zsofiakalvin">GitHub <span class="ic" aria-hidden="true">&#8599;</span></a>
+        </div>
+      </div>
+      <div class="sig-shell">
+        <div class="sig-core">
+          <p class="sig-title">Every automation follows the same path</p>
+          <ol class="sig">
+            <li style="--i:0"><b>Source data</b><span>Data the team already has</span></li>
+            <li class="ai" style="--i:1"><b>AI drafts</b><span>A first version, never the final one</span></li>
+            <li class="human" style="--i:2"><b>A person checks</b><span>An owner reviews before use</span></li>
+            <li style="--i:3"><b>Logged output</b><span>Can be checked against its source</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+
+  <section aria-labelledby="how">
+    <div class="section-head">
+      <span class="eyebrow">Approach</span>
+      <h2 id="how">Key considerations</h2>
+      <p>Responsible AI principles I apply to every automation, based on my AAIR training and audit work.</p>
+    </div>
+    <div class="principles">
+      <div class="principle"><div class="principle-core">
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5l4.5 4.5L20 6.5"/></svg></span>
+        <h3>Trust, but verify</h3>
+        <p>AI output is treated as a draft. Results are <mark class="hl">checked against the source data</mark> before they are used.</p>
+        <span class="aligned">Aligned with NIST AI RMF: Measure</span>
+      </div></div>
+      <div class="principle"><div class="principle-core">
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/></svg></span>
+        <h3>Human oversight</h3>
+        <p>Every automation is human-in-the-loop. A named person reviews and approves the output <mark class="hl">before it changes a system, a role or a decision</mark>.</p>
+        <span class="aligned">Aligned with EU AI Act Art. 14, human oversight</span>
+      </div></div>
+      <div class="principle"><div class="principle-core">
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2.5"/><path d="M9 8.5h6M9 12h6M9 15.5h4"/></svg></span>
+        <h3>Inputs and outputs are logged</h3>
+        <p>Every input file and every output is kept, so a reviewer can see <mark class="hl">what went in and what came out</mark>.</p>
+        <span class="aligned">Aligned with EU AI Act Art. 12, record-keeping; ISO/IEC 42001</span>
+      </div></div>
+      <div class="principle"><div class="principle-core">
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></span>
+        <h3>Every output links to its source</h3>
+        <p>In audit, <mark class="hl">evidence without a source does not count</mark>. Outputs keep a reference to the data they came from, so a reviewer can check them.</p>
+        <span class="aligned">Aligned with NIST AI RMF: Govern, accountability and documentation</span>
+      </div></div>
+      <p class="aligned-note"><span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></svg></span><span>These are alignments with the concepts in each framework, not compliance claims. The automations here are internal tools, not high-risk AI systems under the EU AI Act.</span></p>
+    </div>
+  </section>
+
+  <section aria-labelledby="work">
+    <div class="section-head">
+      <span class="eyebrow">5 case studies</span>
+      <h2 id="work">Selected automations</h2>
+      <p>Ranked from strongest to lightest. Open any of them to see how it works. Examples are from recent roles, anonymized and simplified due to confidentiality.</p>
+      <div class="legend" aria-label="Flowchart key">
+        <span><i></i>Source data</span>
+        <span><i class="ai"></i>AI step</span>
+        <span><i class="human"></i>Human check</span>
+        <span><i class="out"></i>Output</span>
+      </div>
+    </div>
+
+    <div class="cases">
+
+      <details class="case-item" name="case" open>
+        <summary>
+          <span class="ci-num">01</span>
+          <span class="ci-text"><span class="ci-kind">Testing and assurance</span><strong>Access redesign UAT, built from real usage</strong><span class="ci-sum">A test script per user, built from the transactions each person actually used.</span></span>
+          <span class="ci-chev" aria-hidden="true"></span>
+        </summary>
+      <article class="case"><div class="case-core">
+        <div class="case-head">
+          <span class="case-kind">Testing and assurance</span>
+          <h3>Access redesign UAT, built from real usage</h3>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">In an access redesign, every user had to keep their current access, with <mark class="hl">no operational impact</mark>.</span></p>
+        </div>
+        <div class="case-result">
+          <span>Outcome</span>
+          <dl class="ba">
+            <dt>Before</dt><dd>Linking test scripts to each user&#x27;s transaction usage and mapping them to the process by hand was time-consuming.</dd>
+            <dt>After</dt><dd>Customized test scripts based on usage data and the actual process flows. Users moved to the new access setup <strong class="em">without disruption to their daily work</strong>.</dd>
+          </dl>
+        </div>
+        <figure class="flow">
+          <figcaption>How it works</figcaption>
+          <ol>
+            <li class="step src"><span>Source</span>Audit log of actual usage, role export and process flows</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step ai"><span>AI</span>Script per user with expected outcomes</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step human"><span>Review</span>Functional experts</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step out"><span>Output</span>Test scripts and progress dashboard</li>
+          </ol>
+        </figure>
+        <div class="case-main">
+          <span class="case-label">Approach</span>
+          <p>For each tester, the system audit log showed which transactions they had used over a recent period, and their current roles were exported. An LLM linked those transactions to the documented process flows and wrote a test script per user. The steps follow the actual business process, and the expected outcome of each step is defined by that process.</p><p>The scripts were shared in SharePoint, with a dashboard to track progress.</p>
+        </div>
+        <div class="case-side">
+          <dl class="fields">
+            <dt>Stack</dt>
+            <dd class="tags"><span class="tag">Audit log</span><span class="tag">SharePoint</span><span class="tag">Excel</span><span class="tag">LLM</span><span class="tag">Confluence</span><span class="tag">MCP</span></dd>
+            <dt>My role</dt>
+            <dd>I designed the approach, generated the scripts with the LLM and coordinated testing. Functional experts reviewed the scripts before testers ran them.</dd>
+          </dl>
+          <dl class="fields gov">
+            <dt>Control</dt>
+            <dd>Human-in-the-loop: functional experts checked every script before testing started.</dd>
+            <dt>Traceability</dt>
+            <dd>Every script step links to the transaction it came from and the related process flow.</dd>
+            <dt>Limits</dt>
+            <dd>Transactions not used during the period can be missed. The scripts show that users keep the access they used, not whether that access is appropriate.</dd>
+          </dl>
+        </div>
+      </div></article>
+      </details>
+      <details class="case-item" name="case">
+        <summary>
+          <span class="ci-num">02</span>
+          <span class="ci-text"><span class="ci-kind">GRC and access risk</span><strong>AI-assisted SoD ruleset</strong><span class="ci-sum">An LLM reviewed the documented process flows for SoD risks and critical actions, as the base for a custom ruleset.</span></span>
+          <span class="ci-chev" aria-hidden="true"></span>
+        </summary>
+      <article class="case"><div class="case-core">
+        <div class="case-head">
+          <span class="case-kind">GRC and access risk</span>
+          <h3>AI-assisted SoD ruleset</h3>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">The business processes were documented in detail, but there were <mark class="hl">too many process flows to review manually</mark> for segregation of duties risks and to map to system requirements. The SoD ruleset was <mark class="hl">not clearly mapped to the business processes</mark>.</span></p>
+        </div>
+        <div class="case-result">
+          <span>Outcome</span>
+          <dl class="ba">
+            <dt>Before</dt><dd>SoD ruleset not clearly mapped to the business processes.</dd>
+            <dt>After</dt><dd>A reviewed baseline SoD and critical access ruleset, ready to extend.</dd>
+          </dl>
+        </div>
+        <figure class="flow">
+          <figcaption>How it works</figcaption>
+          <ol>
+            <li class="step src"><span>Source</span>Documented process flows</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step ai"><span>AI</span>Flag SoD risks, roles and critical actions</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step human"><span>Review</span>Process owners and SMEs</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step human"><span>Mapping</span>Technical experts map to transactions</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step out"><span>Output</span>Custom SoD and critical access ruleset</li>
+          </ol>
+        </figure>
+        <div class="case-main">
+          <span class="case-label">Approach</span>
+          <p>An LLM went through the process flows and, using defined keywords, flagged where SoD conflicts could occur, which role each step belongs to, and which actions are critical.</p><p>Process owners and subject matter experts reviewed the findings. Technical experts then mapped the processes to system transactions and authorization objects to build a custom SoD and critical access ruleset.</p>
+        </div>
+        <div class="case-side">
+          <dl class="fields">
+            <dt>Stack</dt>
+            <dd class="tags"><span class="tag">ERP data</span><span class="tag">SharePoint</span><span class="tag">LLM</span><span class="tag">Confluence</span><span class="tag">MCP</span></dd>
+            <dt>My role</dt>
+            <dd>I designed the keyword approach and ran the AI analysis. Process owners and SMEs reviewed the findings, and technical experts did the mapping.</dd>
+          </dl>
+          <dl class="fields gov">
+            <dt>Control</dt>
+            <dd>Human-in-the-loop: the LLM produced a first draft only. Process owners and SMEs reviewed the findings, and technical experts did the mapping.</dd>
+            <dt>Traceability</dt>
+            <dd>Each risk and critical action links to the process flow it came from and to the documented mitigating control.</dd>
+            <dt>Limits</dt>
+            <dd>Keyword matching can miss a risk described in other words, and process documentation can be out of date. The ruleset is a baseline, not a complete risk assessment.</dd>
+          </dl>
+        </div>
+      </div></article>
+      </details>
+      <details class="case-item" name="case">
+        <summary>
+          <span class="ci-num">03</span>
+          <span class="ci-text"><span class="ci-kind">Operational risk signals</span><strong>Support ticket insight dashboard</strong><span class="ci-sum">Turns escalated support tickets into insight on emerging risks and knowledge gaps.</span></span>
+          <span class="ci-chev" aria-hidden="true"></span>
+        </summary>
+      <article class="case"><div class="case-core">
+        <div class="case-head">
+          <span class="case-kind">Operational risk signals</span>
+          <h3>Support ticket insight dashboard</h3>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">Support handles a large number of tickets, often routed across several teams. The goal was to find <mark class="hl">bottlenecks and recurring issues</mark>.</span></p>
+        </div>
+        <div class="case-result">
+          <span>Outcome</span>
+          <dl class="ba">
+            <dt>Before</dt><dd>No visibility of where the knowledge base falls short or where tickets get stuck.</dd>
+            <dt>After</dt><dd>Recurring escalations became visible by category. Many were already covered by existing procedures, so those were shared and training was added where the process was unclear. These escalations went down afterwards, although other changes in the same period may also have played a part.</dd>
+          </dl>
+        </div>
+        <figure class="flow">
+          <figcaption>How it works</figcaption>
+          <ol>
+            <li class="step src"><span>Source</span>Escalated tickets</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step ai"><span>AI</span>Categorize and suggest root cause</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step out"><span>Output</span>Two dashboard reports</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step human"><span>Review</span>Function owner decides on action</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step out"><span>Output</span>Monthly summary</li>
+          </ol>
+        </figure>
+        <div class="case-main">
+          <span class="case-label">Approach</span>
+          <p>An automation collects the tickets first-line support could not resolve or needed help with. An LLM sorts them into predefined categories and suggests the root cause and the help that was needed.</p><p>The results feed two reports on a dashboard. One shows ticket volume and type to flag emerging risks. The other shows knowledge gaps behind escalations.</p>
+        </div>
+        <div class="case-side">
+          <dl class="fields">
+            <dt>Stack</dt>
+            <dd class="tags"><span class="tag">Jira</span><span class="tag">Confluence</span><span class="tag">MCP</span><span class="tag">LLM</span><span class="tag">Microsoft Office</span></dd>
+          <dt>Schedule</dt>
+          <dd>Runs daily. Monthly summary to management.</dd>
+            <dt>My role</dt>
+            <dd>I built the automation and the reports. The function owner decides what action to take.</dd>
+          </dl>
+          <dl class="fields gov">
+            <dt>Control</dt>
+            <dd>The function owner reviews each report and decides whether action is needed. Tickets are sorted into predefined categories.</dd>
+            <dt>Traceability</dt>
+            <dd>Every ticket is listed in the report with a link to the original ticket.</dd>
+            <dt>Limits</dt>
+            <dd>Tickets with several causes can land in the wrong category. Root causes are suggestions that the function owner confirms.</dd>
+          </dl>
+        </div>
+      </div></article>
+      </details>
+      <details class="case-item" name="case">
+        <summary>
+          <span class="ci-num">04</span>
+          <span class="ci-text"><span class="ci-kind">Identity and access management (IAM)</span><strong>Self-service role catalogue</strong><span class="ci-sum">A searchable guide to system roles, written for business users and refreshed every week.</span></span>
+          <span class="ci-chev" aria-hidden="true"></span>
+        </summary>
+      <article class="case"><div class="case-core">
+        <div class="case-head">
+          <span class="case-kind">Identity and access management (IAM)</span>
+          <h3>Self-service role catalogue</h3>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">Technical role names <mark class="hl">meant little to business users</mark>, so it was hard for them to know which access to request.</span></p>
+        </div>
+        <div class="case-result">
+          <span>Outcome</span>
+          <dl class="ba">
+            <dt>Before</dt><dd>Business users chose access from technical role names.</dd>
+            <dt>After</dt><dd>One searchable page explains roles in business terms, used by business users and the support team.</dd>
+          </dl>
+        </div>
+        <figure class="flow">
+          <figcaption>How it works</figcaption>
+          <ol>
+            <li class="step src"><span>Source</span>Weekly role data extract</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step ai"><span>AI</span>Build searchable page</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step human"><span>Review</span>Manual check</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step out"><span>Output</span>Role catalogue page</li>
+          </ol>
+        </figure>
+        <div class="case-main">
+          <span class="case-label">Approach</span>
+          <p>Role data is extracted from the ERP system every week. An LLM turns it into a searchable page where people can find roles by transaction description, job title or business process, and see whether a role gives display or maintain access.</p><p>Each role shows what it contains, with best-practice guidance on which role to request. The support team uses the same page to answer access questions.</p>
+        </div>
+        <div class="case-side">
+          <dl class="fields">
+            <dt>Stack</dt>
+            <dd class="tags"><span class="tag">ERP extract</span><span class="tag">Excel</span><span class="tag">LLM</span><span class="tag">Confluence</span><span class="tag">HTML</span></dd>
+          <dt>Refresh</dt>
+          <dd>Weekly</dd>
+            <dt>My role</dt>
+            <dd>I built the extract, the page and the weekly refresh, and I check each version.</dd>
+          </dl>
+          <dl class="fields gov">
+            <dt>Control</dt>
+            <dd>I check the generated page before it is published. It is read-only, and access is still requested and approved through the normal process.</dd>
+            <dt>Traceability</dt>
+            <dd>Each refresh is built from that week&#x27;s data extract.</dd>
+            <dt>Limits</dt>
+            <dd>The page is only as good as the role data behind it. It guides requests but does not replace the approval step.</dd>
+          </dl>
+        </div>
+      </div></article>
+      </details>
+      <details class="case-item" name="case">
+        <summary>
+          <span class="ci-num">05</span>
+          <span class="ci-text"><span class="ci-kind">Delivery</span><strong>Project plan to Jira, kept in sync</strong><span class="ci-sum">Turned a written project plan into Jira tickets and a dashboard that stays in sync.</span></span>
+          <span class="ci-chev" aria-hidden="true"></span>
+        </summary>
+      <article class="case"><div class="case-core">
+        <div class="case-head">
+          <span class="case-kind">Delivery</span>
+          <h3>Project plan to Jira, kept in sync</h3>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">The project plan lived in a document and the work lived in Jira, so status had to be <mark class="hl">updated in two places</mark>.</span></p>
+        </div>
+        <div class="case-result">
+          <span>Outcome</span>
+          <dl class="ba">
+            <dt>Before</dt><dd>Status was updated in both the plan and Jira.</dd>
+            <dt>After</dt><dd>Status is kept in Jira only, and the dashboard follows every week.</dd>
+          </dl>
+        </div>
+        <figure class="flow">
+          <figcaption>How it works</figcaption>
+          <ol>
+            <li class="step src"><span>Source</span>Written project plan</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step ai"><span>AI</span>Build dashboard and tickets</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step human"><span>Review</span>Project coordinator</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step out"><span>Output</span>Jira tickets by person and sprint</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step src"><span>Repeat</span>Weekly sync from Jira</li>
+          </ol>
+        </figure>
+        <div class="case-main">
+          <span class="case-label">Approach</span>
+          <p>An LLM turned the written project plan into a dashboard and a set of Jira tickets, assigned to people and sprints.</p><p>A weekly scheduled task updates the dashboard from Jira.</p>
+        </div>
+        <div class="case-side">
+          <dl class="fields">
+            <dt>Stack</dt>
+            <dd class="tags"><span class="tag">LLM</span><span class="tag">Jira</span><span class="tag">Confluence</span><span class="tag">MCP</span><span class="tag">Microsoft Office</span></dd>
+          <dt>Schedule</dt>
+          <dd>Weekly</dd>
+            <dt>My role</dt>
+            <dd>I set up the dashboard, the tickets and the weekly sync. The project coordinator reviews tickets and assignments.</dd>
+          </dl>
+          <dl class="fields gov">
+            <dt>Control</dt>
+            <dd>The project coordinator reviews the tickets and assignments.</dd>
+            <dt>Traceability</dt>
+            <dd>The dashboard is rebuilt from Jira every week, so it reflects the tickets themselves.</dd>
+            <dt>Limits</dt>
+            <dd>Splitting the plan into tickets needs a human check, and the dashboard is only as current as Jira.</dd>
+          </dl>
+        </div>
+      </div></article>
+      </details>
+
+    </div>
+  </section>
+
+
+
+  <section aria-labelledby="certs">
+    <div class="section-head">
+      <span class="eyebrow">Credentials</span>
+      <h2 id="certs">Certifications</h2>
+      <p>Risk and audit foundations, with a current focus on AI governance.</p>
+    </div>
+    <div class="cert-groups">
+      <div class="cert-group">
+        <h3>AI risk and governance</h3>
+        <ul class="cert-list">
+          <li class="cert"><div class="cert-name"><strong>Advanced in AI Risk (AAIR)</strong><span>ISACA</span></div><span class="cert-year">2026</span></li>
+          <li class="cert"><div class="cert-name"><strong>Data Ethics, AI and Responsible Innovation</strong><span>edX</span></div><span class="cert-year">2024</span></li>
+        </ul>
+      </div>
+      <div class="cert-group ">
+        <h3>Risk, audit and IT service</h3>
+        <ul class="cert-list">
+          <li class="cert"><div class="cert-name"><strong>Certified in Risk and Information Systems Control (CRISC)</strong><span>ISACA</span></div><span class="cert-year">2023</span></li>
+          <li class="cert"><div class="cert-name"><strong>ITIL 4</strong><span>AXELOS</span></div><span class="cert-year"></span></li>
+        </ul>
+      </div>
+      <div class="cert-group ">
+        <h3>Identity and access</h3>
+        <ul class="cert-list">
+          <li class="cert"><div class="cert-name"><strong>SAP System Security and Authorizations</strong><span>SAP Certified Technology Associate</span></div><span class="cert-year">2023</span></li>
+          <li class="cert"><div class="cert-name"><strong>Azure Identity and Access Management</strong><span>Microsoft</span></div><span class="cert-year"></span></li>
+          <li class="cert"><div class="cert-name"><strong>Okta IAM Fundamentals</strong><span>Okta</span></div><span class="cert-year"></span></li>
+        </ul>
+      </div>
+      <div class="cert-group ">
+        <h3>Data and design</h3>
+        <ul class="cert-list">
+          <li class="cert"><div class="cert-name"><strong>Google Data Analytics</strong><span>Coursera</span></div><span class="cert-year">2022</span></li>
+          <li class="cert"><div class="cert-name"><strong>Google UX Design</strong><span>Coursera</span></div><span class="cert-year">2021</span></li>
+        </ul>
+      </div>
+      <div class="edu">
+        <span class="edu-lbl">Education</span>
+        <div class="cert-name"><strong>First Class Honours, BSc Business and Management</strong><span>University of Derby</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="career">
+    <div class="section-head">
+      <span class="eyebrow">Career</span>
+      <h2 id="career">Experience</h2>
+      <p>SAP authorization, IT audit and risk advisory.</p>
+    </div>
+    <ol class="timeline">
+      <li class="job current">
+        <span class="job-dates">2026 – now</span>
+        <div class="job-role"><strong>Functional Application Manager</strong><span>Leaseweb, Amsterdam</span></div>
+        <p>ERP access management: role design, SoD controls and second-line support.</p>
+      </li>
+      <li class="job">
+        <span class="job-dates">2024 – 2025</span>
+        <div class="job-role"><strong>Senior IT Auditor</strong><span>CRH, Amsterdam</span></div>
+        <p>Risk-based IT audits and SOX readiness, covering ITGCs, application controls and access management.</p>
+      </li>
+      <li class="job">
+        <span class="job-dates">2023</span>
+        <div class="job-role"><strong>Process &amp; Control Improvement Senior Specialist</strong><span>HEINEKEN, Amsterdam</span></div>
+        <p>Cross-platform SoD risk analysis and review of critical access controls.</p>
+      </li>
+      <li class="job">
+        <span class="job-dates">2023</span>
+        <div class="job-role"><strong>Authorization Specialist</strong><span>ECCO, Copenhagen</span></div>
+        <p>SAP authorization administration, role maintenance and SoD monitoring.</p>
+      </li>
+      <li class="job">
+        <span class="job-dates">2020 – 2023</span>
+        <div class="job-role"><strong>Risk Advisory Senior Consultant</strong><span>Deloitte, Copenhagen</span></div>
+        <p>SAP authorization concepts, SAP IT audits and GRC engagements for international clients.</p>
+      </li>
+      <li class="job">
+        <span class="job-dates">2019 – 2020</span>
+        <div class="job-role"><strong>SAP Authorization Support Analyst</strong><span>Roche, Budapest</span></div>
+        <p>Second-level SAP authorization support and SoD monitoring in a global project.</p>
+      </li>
+      <li class="job">
+        <span class="job-dates">2016 – 2019</span>
+        <div class="job-role"><strong>Financial Systems &amp; Master Data Support Analyst</strong><span>Avis Budget Group, Budapest</span></div>
+        <p>Financial systems and master data support in a SOX-regulated shared service centre.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="contact" aria-labelledby="contact">
+    <span class="eyebrow">Contact</span>
+    <h2 id="contact">Let's talk</h2>
+    <p>Happy to talk about AI governance, access risk and practical AI automation. The easiest way to reach me is on LinkedIn or by email.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://www.linkedin.com/in/zsofia-kalvin/">Message on LinkedIn <span class="ic" aria-hidden="true">&#8599;</span></a>
+      <a class="btn" href="mailto:kalvin.zsofia@gmail.com">kalvin.zsofia@gmail.com <span class="ic" aria-hidden="true">&#8599;</span></a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Netherlands</span>
+    <span>&copy; 2026 Zsófia Kálvin</span>
+  </footer>
+
+</main>
+</body>
+</html>
