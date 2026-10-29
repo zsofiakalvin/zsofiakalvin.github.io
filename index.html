@@ -337,7 +337,8 @@
 
 
   /* Certifications v2 */
-  .cert-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+  .cert-groups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+  @media (max-width: 960px) and (min-width: 761px) { .cert-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   .cert-group { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: 24px 26px; display: flex; flex-direction: column; gap: 14px; min-width: 0; box-shadow: var(--shadow); }
   .cert-group h3 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--fg); }
   .cert-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; }
@@ -508,9 +509,9 @@
     <div class="hero-grid">
       <div class="hero-copy">
         <span class="role">AI risk, governance and automation</span>
-        <div class="creds" aria-label="Credentials"><span>ISACA AAIR</span><span>CRISC</span><span class="plain">10+ years in IT audit, GRC and access management</span></div>
+        <div class="creds" aria-label="Credentials"><span>ISACA AAIR</span><span>CRISC</span></div>
         <h1>AI automation <span class="rule">with a <span class="mark">compliance mindset</span></span></h1>
-        <p class="lede">I use AI for process improvement and data-driven insights for decision making. With over 10 years of experience in IT systems support, risk advisory and IT audit, I build each automation with the principle of <mark class="hl">least privilege, human review, clear ownership and an audit trail</mark> in place.</p>
+        <p class="lede">With over 10 years of experience in IT systems support, risk advisory and IT audit, I build AI-driven automations with the principle of <mark class="hl">least privilege, human review, clear ownership and an audit trail</mark> in place.</p>
         <div class="cta">
           <a class="btn primary" href="https://www.linkedin.com/in/zsofia-kalvin/">LinkedIn <span class="ic" aria-hidden="true">&#8599;</span></a>
           <a class="btn" href="https://github.com/zsofiakalvin">GitHub <span class="ic" aria-hidden="true">&#8599;</span></a>
@@ -563,7 +564,7 @@
         <p>In audit, <mark class="hl">evidence without a source does not count</mark>. Outputs keep a reference to the data they came from, so a reviewer can check them.</p>
         <span class="aligned">Aligned with NIST AI RMF: Govern, accountability and documentation</span>
       </div></div>
-      <p class="aligned-note"><span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></svg></span><span>These are alignments with the concepts in each framework, not compliance claims. The automations here are internal tools, not high-risk AI systems under the EU AI Act.</span></p>
+      <p class="aligned-note"><span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></svg></span><span>These are alignments with the concepts in each framework, not compliance claims.</span></p>
     </div>
   </section>
 
@@ -591,7 +592,7 @@
         <div class="case-head">
           <span class="case-kind">Testing and assurance</span>
           <h3>Access redesign UAT, built from real usage</h3>
-          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">During an access redesign project, every user had to keep their current access, with <mark class="hl">no operational impact</mark>.</span></p>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">An access redesign project moved every user to new roles. They still needed to do their daily work as before, with <mark class="hl">no operational impact</mark>.</span></p>
         </div>
         <div class="case-result">
           <span>Outcome</span>
@@ -621,7 +622,7 @@
             <dt>Stack</dt>
             <dd class="tags"><span class="tag">Audit log</span><span class="tag">SharePoint</span><span class="tag">Excel</span><span class="tag">LLM</span><span class="tag">Confluence</span><span class="tag">MCP</span></dd>
             <dt>My role</dt>
-            <dd>I designed the approach, generated the scripts with the LLM and coordinated testing. Functional experts reviewed the scripts before testers ran them.</dd>
+            <dd>I designed and set up the approach, generated the scripts with the LLM and coordinated testing.</dd>
           </dl>
           <dl class="fields gov">
             <dt>Control</dt>
@@ -649,7 +650,7 @@
         <div class="case-result">
           <span>Outcome</span>
           <dl class="ba">
-            <dt>Before</dt><dd>SoD ruleset not clearly mapped to the business processes.</dd>
+            <dt>Before</dt><dd>Manual review only, with an SoD ruleset that did not reflect the business processes.</dd>
             <dt>After</dt><dd>A reviewed baseline SoD and critical access ruleset, ready to extend.</dd>
           </dl>
         </div>
@@ -676,7 +677,7 @@
             <dt>Stack</dt>
             <dd class="tags"><span class="tag">ERP data</span><span class="tag">SharePoint</span><span class="tag">LLM</span><span class="tag">Confluence</span><span class="tag">MCP</span></dd>
             <dt>My role</dt>
-            <dd>I designed the keyword approach and ran the AI analysis. Process owners and SMEs reviewed the findings, and technical experts did the mapping.</dd>
+            <dd>I designed and set up the keyword approach and ran the AI analysis.</dd>
           </dl>
           <dl class="fields gov">
             <dt>Control</dt>
@@ -733,7 +734,7 @@
           <dt>Schedule</dt>
           <dd>Runs daily. Monthly summary to management.</dd>
             <dt>My role</dt>
-            <dd>I built the automation and the reports. The function owner decides what action to take.</dd>
+            <dd>I designed and set up the automation and the reports.</dd>
           </dl>
           <dl class="fields gov">
             <dt>Control</dt>
@@ -788,7 +789,7 @@
           <dt>Refresh</dt>
           <dd>Weekly</dd>
             <dt>My role</dt>
-            <dd>I built the extract, the page and the weekly refresh, and I check each version.</dd>
+            <dd>I designed and set up the extract, the page and the weekly refresh, and I check each version.</dd>
           </dl>
           <dl class="fields gov">
             <dt>Control</dt>
@@ -845,7 +846,7 @@
           <dt>Schedule</dt>
           <dd>Weekly</dd>
             <dt>My role</dt>
-            <dd>I set up the dashboard, the tickets and the weekly sync. The project coordinator reviews tickets and assignments.</dd>
+            <dd>I designed and set up the dashboard, the tickets and the weekly sync.</dd>
           </dl>
           <dl class="fields gov">
             <dt>Control</dt>
@@ -877,22 +878,14 @@
           <li class="cert"><div class="cert-name"><strong>Data Ethics, AI and Responsible Innovation</strong><span>edX</span></div><span class="cert-year">2024</span></li>
         </ul>
       </div>
-      <div class="cert-group ">
-        <h3>Risk, audit and IT service</h3>
+      <div class="cert-group">
+        <h3>Risk, control and access</h3>
         <ul class="cert-list">
           <li class="cert"><div class="cert-name"><strong>Certified in Risk and Information Systems Control (CRISC)</strong><span>ISACA</span></div><span class="cert-year">2023</span></li>
-          <li class="cert"><div class="cert-name"><strong>ITIL 4</strong><span>AXELOS</span></div><span class="cert-year"></span></li>
-        </ul>
-      </div>
-      <div class="cert-group ">
-        <h3>Identity and access</h3>
-        <ul class="cert-list">
           <li class="cert"><div class="cert-name"><strong>SAP System Security and Authorizations</strong><span>SAP Certified Technology Associate</span></div><span class="cert-year">2023</span></li>
-          <li class="cert"><div class="cert-name"><strong>Azure Identity and Access Management</strong><span>Microsoft</span></div><span class="cert-year"></span></li>
-          <li class="cert"><div class="cert-name"><strong>Okta IAM Fundamentals</strong><span>Okta</span></div><span class="cert-year"></span></li>
         </ul>
       </div>
-      <div class="cert-group ">
+      <div class="cert-group">
         <h3>Data and design</h3>
         <ul class="cert-list">
           <li class="cert"><div class="cert-name"><strong>Google Data Analytics</strong><span>Coursera</span></div><span class="cert-year">2022</span></li>
@@ -909,7 +902,7 @@
   <section aria-labelledby="career">
     <div class="section-head">
       <h2 id="career">Experience</h2>
-      <p>SAP authorization, IT audit and risk advisory.</p>
+      <p>Access management, IT audit and risk advisory.</p>
     </div>
     <ol class="timeline">
       <li class="job current">
