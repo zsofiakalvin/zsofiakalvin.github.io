@@ -476,6 +476,24 @@
     .fields dd { margin-bottom: 10px; }
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+  /* Governance programme: registry preview */
+  .registry { grid-column: 1 / -1; margin: 0; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .registry figcaption { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+  .reg-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+  .reg { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 0.85rem; line-height: 1.4; }
+  .reg th, .reg td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+  .reg th { font-family: var(--font-mono); font-weight: 500; font-size: 0.75rem; color: var(--muted); background: var(--shell); white-space: nowrap; }
+  .reg tr:last-child td { border-bottom: 0; }
+  .reg td:first-child { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+  .cls { display: inline-block; font-size: 0.78rem; font-weight: 600; padding: 1px 8px; border-radius: 4px; border: 1px solid var(--line); white-space: nowrap; }
+  .cls.high { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .cls.limited { background: var(--hl-soft); border-color: #c9e43a; }
+  .due { white-space: nowrap; }
+  .due.over { color: var(--pending); font-weight: 600; }
+  .reg-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+  .reg-foot .also { max-width: 60ch; }
+  .next-steps { font-size: 0.88rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 4px; }
 </style>
 <link rel="canonical" href="https://zsofiakalvin.github.io/">
 <meta property="og:type" content="website">
@@ -496,6 +514,7 @@
       <span class="brand">Zsófia Kálvin</span>
       <div class="navlinks">
         <a href="#how">Key considerations</a>
+        <a href="#governance">AI governance</a>
         <a href="#work">Automations</a>
         <a href="#certs">Certifications</a>
         <a href="#career">Experience</a>
@@ -566,6 +585,180 @@
       </div></div>
       <p class="aligned-note"><span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></svg></span><span>These are alignments with the concepts in each framework, not compliance claims.</span></p>
     </div>
+  </section>
+
+  <section aria-labelledby="governance">
+    <div class="section-head">
+      <h2 id="governance">AI governance, step by step</h2>
+      <p>How I would set up AI governance in a mid-size company, one step at a time. Each step is shown on a fictional company, with a template you can download.</p>
+      <div class="legend" aria-label="Flowchart key">
+        <span><i></i>Source data</span>
+        <span><i class="ai"></i>AI step</span>
+        <span><i class="human"></i>Human check</span>
+        <span><i class="out"></i>Output</span>
+      </div>
+    </div>
+
+    <div class="cases">
+
+      <details class="case-item" name="gov" open>
+        <summary>
+          <span class="ci-num">01</span>
+          <span class="ci-text"><span class="ci-kind">AI inventory</span><strong>AI asset registry</strong><span class="ci-sum">A questionnaire and IT interview that turn scattered AI use into one registry with owners, data, access and risk class.</span></span>
+          <span class="ci-chev" aria-hidden="true"></span>
+        </summary>
+      <article class="case"><div class="case-core">
+        <div class="case-head">
+          <span class="case-kind">AI inventory</span>
+          <h3>AI asset registry</h3>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">AI tools spread through teams faster than anyone tracks them. Without a list, no one can say <mark class="hl">which systems use personal data, who can change them, or which fall under the EU AI Act</mark>.</span></p>
+        </div>
+        <div class="case-result">
+          <span>Outcome</span>
+          <dl class="ba">
+            <dt>Before</dt><dd>AI use is known only to the teams using it, spread across licences, browser tools and features inside other software.</dd>
+            <dt>After</dt><dd>One registry with an <strong class="em">owner, data, access and risk class for every AI system</strong>, and a review date that flags when a system is overdue.</dd>
+          </dl>
+          <span class="todo" style="align-self:flex-start">Worked example on a fictional company</span>
+        </div>
+        <figure class="flow">
+          <figcaption>How it works</figcaption>
+          <ol>
+            <li class="step src"><span>Source</span>Department questionnaire, IT interview, SSO and procurement lists</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step ai"><span>AI</span>Draft registry rows and a first AI Act class</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step human"><span>Review</span>Business owner confirms the row</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step human"><span>Review</span>Governance confirms the class</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step out"><span>Output</span>AI asset registry</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step src"><span>Repeat</span>Intake for new tools and scheduled reviews</li>
+          </ol>
+        </figure>
+        <div class="case-main">
+          <span class="case-label">Approach</span>
+          <p>Each department fills in a short questionnaire: which AI tools they use, for what, with which data, and whether the output affects decisions about people. A structured interview with IT then checks the answers against SSO apps and procurement data, and covers what departments cannot see: who can configure each tool, which service accounts and API keys it runs on, and what other systems it can reach.</p><p>An LLM turns the answers into draft registry rows with a first AI Act class and its rationale. The business owner confirms each row and governance confirms the class. New tools enter the registry before go-live, and each row gets a review date: every 6 months for high-risk or internet-facing systems, every 12 months for the rest.</p>
+        </div>
+        <div class="case-side">
+          <dl class="fields">
+            <dt>Stack</dt>
+            <dd class="tags"><span class="tag">Questionnaire</span><span class="tag">IT interview</span><span class="tag">SSO app list</span><span class="tag">LLM</span><span class="tag">Excel</span></dd>
+            <dt>My role</dt>
+            <dd>I designed the questionnaire, the IT interview guide and the registry, and built the worked example.</dd>
+          </dl>
+          <dl class="fields gov">
+            <dt>Control</dt>
+            <dd>Human-in-the-loop: the LLM drafts only. The business owner confirms each row, governance confirms the AI Act class, and high-risk or unclear cases go to legal.</dd>
+            <dt>Traceability</dt>
+            <dd>Each row records who approved the system and when, with a link to the questionnaire answers, interview notes and evidence.</dd>
+            <dt>Limits</dt>
+            <dd>The registry depends on people declaring what they use. Free tools outside SSO and expenses can be missed. The AI Act class is a first assessment, not legal advice.</dd>
+          </dl>
+        </div>
+        <figure class="registry">
+          <figcaption>Registry preview, fictional mid-size hosting provider (9 of 28 fields)</figcaption>
+          <div class="reg-scroll">
+            <table class="reg">
+              <thead><tr><th>ID</th><th>AI system</th><th>Owner</th><th>Data</th><th>Exposure</th><th>AI Act class</th><th>Access and keys</th><th>Approved</th><th>Next review</th></tr></thead>
+              <tbody>
+                <tr><td>AI-001</td><td>Coding assistant</td><td>Head of Engineering</td><td>Source code, no personal data</td><td>Internal</td><td><span class="cls">Minimal</span></td><td>SSO group; IT admins configure</td><td>CISO</td><td class="due">Sep 2027</td></tr>
+                <tr><td>AI-002</td><td>Customer support chatbot</td><td>Head of Customer Support</td><td>Knowledge base, chat transcripts (personal data)</td><td>Internet-facing</td><td><span class="cls limited">Limited (transparency)</span></td><td>Public; API key in vault, rotated every 90 days</td><td>Head of Customer Support</td><td class="due over">Overdue</td></tr>
+                <tr><td>AI-003</td><td>CV screening in HR system</td><td>HR Director</td><td>Applicant CVs (personal data)</td><td>Internal</td><td><span class="cls high">High-risk</span></td><td>Recruiters via SSO; HRIS admin only</td><td>Pending DPIA</td><td class="due">Apr 2027</td></tr>
+                <tr><td>AI-004</td><td>Ticket categorisation</td><td>Support function owner</td><td>Escalated tickets, names stripped</td><td>Internal</td><td><span class="cls">Minimal</span></td><td>Read-only service account; key in vault</td><td>Head of IT</td><td class="due">May 2027</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="reg-foot">
+            <span class="also">The template has 28 fields, dropdowns for the AI Act class and risk, an automatic review date and an overdue flag, plus the full questionnaire and IT interview guide.</span>
+            <a class="btn" href="assets/ai-asset-registry-template.xlsx" download>Download template (.xlsx) <span class="ic" aria-hidden="true">&#8595;</span></a>
+          </div>
+        </figure>
+      </div></article>
+      </details>
+      <details class="case-item" name="gov">
+        <summary>
+          <span class="ci-num">02</span>
+          <span class="ci-text"><span class="ci-kind">AI in the development lifecycle</span><strong>AI and privacy screening in change management</strong><span class="ci-sum">Every new development is screened for privacy and EU AI Act impact, routed to the right approver and added to the registry.</span></span>
+          <span class="ci-chev" aria-hidden="true"></span>
+        </summary>
+      <article class="case"><div class="case-core">
+        <div class="case-head">
+          <span class="case-kind">AI in the development lifecycle</span>
+          <h3>AI and privacy screening in change management</h3>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">A registry only stays current if new AI is caught when it is built. Otherwise features with AI or personal data <mark class="hl">reach production before anyone checks them</mark>, and the review happens after go-live, if at all.</span></p>
+        </div>
+        <div class="case-result">
+          <span>Outcome</span>
+          <dl class="ba">
+            <dt>Before</dt><dd>Privacy and AI review depend on someone remembering to ask, and nobody knows who should approve what.</dd>
+            <dt>After</dt><dd>Every change is screened at refinement, <strong class="em">routed automatically to the right decision maker</strong>, and blocked at release until approved. Approved AI changes land in the registry.</dd>
+          </dl>
+          <span class="todo" style="align-self:flex-start">Worked example on a fictional company</span>
+        </div>
+        <figure class="flow">
+          <figcaption>How it works</figcaption>
+          <ol>
+            <li class="step src"><span>Source</span>Developer answers 8 screening questions on the change ticket</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step src"><span>Rules</span>Fixed routing picks the approver</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step ai"><span>AI</span>Summary for the approver and draft registry row</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step human"><span>Review</span>Routed decision maker approves</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step out"><span>Output</span>Approval ID on the change, registry entry</li>
+            <li class="arrow" aria-hidden="true"></li>
+            <li class="step src"><span>Gate</span>Release blocked without approval</li>
+          </ol>
+        </figure>
+        <div class="case-main">
+          <span class="case-label">Approach</span>
+          <p>Product owners and Scrum masters attach the screening form to every epic or change at refinement, and the developer answers it. Eight yes/no questions cover AI components, personal data, special category data, decisions about people, prohibited practices, external users, autonomous actions and new processors.</p><p>Fixed rules route the change. A possible prohibited practice goes to legal, high-risk AI to the AI governance board and DPO, privacy impact to the DPO, low-risk AI to the product owner. Changes with no AI or personal data follow the normal change process. An LLM summarises the answers for the approver and drafts the registry row. The change gate checks for an approval ID before release, and approval creates or updates the row in the AI asset registry.</p>
+        </div>
+        <div class="case-side">
+          <dl class="fields">
+            <dt>Stack</dt>
+            <dd class="tags"><span class="tag">Jira forms</span><span class="tag">Jira automation</span><span class="tag">LLM</span><span class="tag">Change management</span><span class="tag">AI registry</span></dd>
+            <dt>My role</dt>
+            <dd>I designed the questionnaire, the routing rules and the approval flow, and built the worked example.</dd>
+          </dl>
+          <dl class="fields gov">
+            <dt>Control</dt>
+            <dd>Routing uses fixed rules, not AI, so who approves is predictable and auditable. The decision maker approves; the LLM only summarises and drafts.</dd>
+            <dt>Traceability</dt>
+            <dd>The answers, routing outcome, approver and approval date stay on the change ticket and link to the registry row.</dd>
+            <dt>Limits</dt>
+            <dd>Screening relies on honest developer answers, so approvers spot-check them. Yes/no questions can miss edge cases, and unclear ones go to legal.</dd>
+          </dl>
+        </div>
+        <figure class="registry">
+          <figcaption>Routing rules, first match wins</figcaption>
+          <div class="reg-scroll">
+            <table class="reg">
+              <thead><tr><th>Tier</th><th>When</th><th>Outcome</th><th>Routed to</th><th>DPIA</th><th>Example change</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Possible prohibited practice</td><td><span class="cls high">Blocked</span></td><td>Legal and AI governance board</td><td>Required</td><td>Detect employee mood in video calls</td></tr>
+                <tr><td>2</td><td>AI that affects decisions about people</td><td><span class="cls high">High-risk AI</span></td><td>AI governance board and DPO</td><td>Required</td><td>AI applicant ranking in the HR system</td></tr>
+                <tr><td>3</td><td>Special category data, new processor or data outside the EU</td><td><span class="cls limited">High privacy impact</span></td><td>DPO</td><td>Required</td><td>Move log storage to a US-based vendor</td></tr>
+                <tr><td>4</td><td>AI with external users or autonomous actions</td><td><span class="cls limited">AI review</span></td><td>AI governance lead</td><td>If personal data</td><td>AI agent that restarts failed servers</td></tr>
+                <tr><td>5</td><td>New use of personal data</td><td><span class="cls">Privacy check</span></td><td>DPO</td><td>Screening</td><td>New phone number field in billing</td></tr>
+                <tr><td>6</td><td>Other AI</td><td><span class="cls">Low-risk AI</span></td><td>Product owner</td><td>No</td><td>Internal code search with embeddings</td></tr>
+                <tr><td>7</td><td>No AI and no personal data</td><td><span class="cls">No impact</span></td><td>Standard change process</td><td>No</td><td>New button colours on the status page</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="reg-foot">
+            <span class="also">The template has the 8 screening questions, the routing rules, and a change log where routing, DPIA need, release gate and registry action are calculated from the answers.</span>
+            <a class="btn" href="assets/ai-change-screening-template.xlsx" download>Download template (.xlsx) <span class="ic" aria-hidden="true">&#8595;</span></a>
+          </div>
+        </figure>
+      </div></article>
+      </details>
+
+    </div>
+    <p class="next-steps">Next steps: <span class="todo">03 Risk assessment</span><span class="todo">04 Vendor AI review</span></p>
   </section>
 
   <section aria-labelledby="work">
