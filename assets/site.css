@@ -575,3 +575,11 @@ html { scroll-behavior: smooth; }
 .cert-name a.verify:hover { text-decoration-color: var(--fg); }
 .cert-groups.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 760px) { .cert-groups.two { grid-template-columns: minmax(0, 1fr); } }
+
+/* Two cert cards: rows line up across both cards */
+@media (min-width: 761px) {
+  .cert-groups.two { row-gap: 0; }
+  .cert-groups.two .cert-group { display: grid; grid-row: span 4; grid-template-rows: subgrid; gap: 0; }
+  .cert-groups.two .cert-list { display: contents; }
+  .cert-groups.two .cert-group h3 { padding-bottom: 14px; }
+}
