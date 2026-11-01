@@ -583,3 +583,10 @@ html { scroll-behavior: smooth; }
   .cert-groups.two .cert-list { display: contents; }
   .cert-groups.two .cert-group h3 { padding-bottom: 14px; }
 }
+
+/* Education: same card style as the cert cards, full width */
+.cert-groups .cert-group.edu-card { grid-column: 1 / -1; }
+@media (min-width: 761px) {
+  .cert-groups.two .cert-group.edu-card { grid-row: auto; display: flex; flex-direction: column; gap: 0; margin-top: 16px; }
+  .cert-groups.two .cert-group.edu-card .cert-list { display: flex; }
+}
