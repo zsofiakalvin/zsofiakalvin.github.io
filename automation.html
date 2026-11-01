@@ -102,20 +102,20 @@
       <details class="case-item" name="case" open>
         <summary>
           <span class="ci-num">01</span>
-          <span class="ci-text"><span class="ci-kind">Testing and assurance</span><strong>SAP access redesign UAT, built from real usage</strong><span class="ci-sum">A test script per user, built from the transactions each person actually used.</span></span>
+          <span class="ci-text"><span class="ci-kind">Testing and assurance</span><strong>SAP access redesign: UAT based on actual usage</strong><span class="ci-sum">A test script per user, built from the transactions each person actually used.</span></span>
           <span class="ci-chev" aria-hidden="true"></span>
         </summary>
       <article class="case"><div class="case-core">
         <div class="case-head">
           <span class="case-kind">Testing and assurance</span>
-          <h3>SAP access redesign UAT, built from real usage</h3>
-          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">An SAP access redesign project moved every user to new roles. They still needed to do their daily work as before, with <mark class="hl">no operational impact</mark>.</span></p>
+          <h3>SAP access redesign: UAT based on actual usage</h3>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">An SAP role redesign moved every user to new roles. Testing had to confirm they could still do their daily work, with <mark class="hl">no operational impact</mark>.</span></p>
         </div>
         <div class="case-result">
           <span>Outcome</span>
           <dl class="ba">
             <dt>Before</dt><dd>Test scripts were linked to each user&#x27;s transactions and mapped to the process by hand, which took a lot of time.</dd>
-            <dt>After</dt><dd>Test scripts based on each user&#x27;s actual usage and the process flows. Users moved to the new SAP roles <strong class="em">without disruption to their daily work</strong>. Around 100 users tested across the global releases. About 80% of the generated scripts were correct first time, and the rest were corrected from tester feedback in each release.</dd>
+            <dt>After</dt><dd>Test scripts based on each user&#x27;s actual usage and the process flows. Users moved to the new SAP roles <strong class="em">with no reported disruption to their daily work</strong>. Around 100 users tested across the global releases. About 80% of the generated scripts were correct first time, and the rest were corrected from tester feedback in each release.</dd>
           </dl>
         </div>
         <figure class="flow">
@@ -132,7 +132,7 @@
         </figure>
         <div class="case-main">
           <span class="case-label">Approach</span>
-          <p>For each tester, the system audit log showed which transactions they had used over a selected period, and their current roles were exported. An LLM linked those transactions to the documented process flows and wrote a test script per user. The steps follow the actual business process, and the expected outcome of each step is defined by that process.</p><p>The scripts were shared in SharePoint, with a dashboard to track progress.</p>
+          <p>For each tester, the system audit log showed which transactions they had used over a selected period, and their current roles were exported. An LLM proposed mappings between those transactions and the documented process flows, and drafted a test script per user. The steps follow the actual business process, and the expected outcome of each step is defined by that process.</p><p>The scripts were shared in SharePoint, with a dashboard to track progress.</p>
         </div>
         <div class="case-side">
           <dl class="fields">
@@ -164,13 +164,13 @@
         <div class="case-head">
           <span class="case-kind">GRC and access risk</span>
           <h3>AI-assisted SoD ruleset</h3>
-          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">The business processes were documented in detail, but there were <mark class="hl">too many process flows to review manually</mark> for segregation of duties risks and to map to system requirements within the project time frame and with the available resources. The SoD ruleset was <mark class="hl">not clearly mapped to the business processes</mark>.</span></p>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">The SoD ruleset was <mark class="hl">not clearly linked to the documented business processes</mark>, and there were too many process flows to review manually within the project time frame.</span></p>
         </div>
         <div class="case-result">
           <span>Outcome</span>
           <dl class="ba">
             <dt>Before</dt><dd>Manual review only, with an SoD ruleset that did not reflect the business processes.</dd>
-            <dt>After</dt><dd>A reviewed baseline SoD and critical access ruleset, ready to extend.</dd>
+            <dt>After</dt><dd>A baseline SoD and critical access ruleset, reviewed by process owners and functional experts, ready to extend.</dd>
           </dl>
         </div>
         <figure class="flow">
@@ -189,7 +189,7 @@
         </figure>
         <div class="case-main">
           <span class="case-label">Approach</span>
-          <p>An LLM went through the process flows and, using defined keywords, flagged where SoD conflicts could occur, which role each step belongs to, and which actions are critical.</p><p>Process owners and subject matter experts reviewed the findings. Technical experts then mapped the processes to system transactions and authorization objects to build a custom SoD and critical access ruleset.</p>
+          <p>An LLM went through the process flows and, using defined keywords, flagged possible SoD conflicts, which role each step belongs to, and which actions are critical.</p><p>Process owners and subject matter experts reviewed the findings. Technical experts then mapped the processes to system transactions and authorization objects to build a custom SoD and critical access ruleset.</p>
         </div>
         <div class="case-side">
           <dl class="fields">
@@ -204,7 +204,7 @@
             <dt>Control</dt>
             <dd>Human-in-the-loop: the LLM produced a first draft only. Process owners and SMEs reviewed the findings, and technical experts did the mapping.</dd>
             <dt>Traceability</dt>
-            <dd>Each risk and critical action links to the process flow it came from and to the documented mitigating control.</dd>
+            <dd>Each risk and critical action links to the process flow it came from and to its documented mitigating control, or records that no control was identified.</dd>
             <dt>Limits</dt>
             <dd>Keyword matching can miss a risk described in other words, and process documentation can be out of date. The ruleset was validated by business process owners and functional SMEs, not benchmarked against a standard ruleset. It is a baseline, not a complete risk assessment.</dd>
           </dl>
@@ -214,14 +214,14 @@
       <details class="case-item" name="case">
         <summary>
           <span class="ci-num">03</span>
-          <span class="ci-text"><span class="ci-kind">Operational risk signals</span><strong>Support ticket insight dashboard</strong><span class="ci-sum">Turns escalated support tickets into insight on emerging risks and knowledge gaps.</span></span>
+          <span class="ci-text"><span class="ci-kind">Operational risk signals</span><strong>Support ticket trends and knowledge gaps</strong><span class="ci-sum">Turns escalated support tickets into insight on emerging risks and knowledge gaps.</span></span>
           <span class="ci-chev" aria-hidden="true"></span>
         </summary>
       <article class="case"><div class="case-core">
         <div class="case-head">
           <span class="case-kind">Operational risk signals</span>
-          <h3>Support ticket insight dashboard</h3>
-          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">Support handles a large number of tickets, often routed across several teams. The goal was to find <mark class="hl">bottlenecks and recurring issues</mark>.</span></p>
+          <h3>Support ticket trends and knowledge gaps</h3>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">Escalated tickets were handled across several teams, so <mark class="hl">recurring issues, bottlenecks and knowledge gaps</mark> were hard to see.</span></p>
         </div>
         <div class="case-result">
           <span>Outcome</span>
@@ -235,7 +235,7 @@
           <ol>
             <li class="step src"><span>Source</span>Escalated tickets</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step ai"><span>AI</span>Categorise and suggest root cause</li>
+            <li class="step ai"><span>AI</span>Categorise and suggest possible causes</li>
             <li class="arrow" aria-hidden="true"></li>
             <li class="step out"><span>Output</span>Two dashboard reports</li>
             <li class="arrow" aria-hidden="true"></li>
@@ -246,7 +246,7 @@
         </figure>
         <div class="case-main">
           <span class="case-label">Approach</span>
-          <p>An automation collects the tickets first-line support could not resolve or needed help with. An LLM sorts them into predefined categories and suggests the root cause and the help that was needed.</p><p>The results feed two reports on a dashboard. One shows ticket volume and type to flag emerging risks. The other shows knowledge gaps behind escalations.</p>
+          <p>An automation collects the tickets first-line support could not resolve or needed help with. An LLM sorts them into predefined categories and suggests possible causes and the help that was needed.</p><p>The results feed two reports on a dashboard. One shows ticket volume and type to flag emerging risks. The other shows knowledge gaps behind escalations.</p>
         </div>
         <div class="case-side">
           <dl class="fields">
@@ -261,11 +261,11 @@
             <dt>Standards and frameworks</dt>
             <dd class="wf-regs"><a class="reg-link" href="https://www.iso.org/standard/70636.html" target="_blank" rel="noopener">ISO/IEC 20000-1</a></dd>
             <dt>Control</dt>
-            <dd>The function owner reviews each report and decides whether action is needed. Tickets are sorted into predefined categories.</dd>
+            <dd>The function owner reviews the overall findings, checks the issues that need follow-up and decides what action to take. Individual classifications are not approved one by one.</dd>
             <dt>Traceability</dt>
             <dd>Every ticket is listed in the report with a link to the original ticket.</dd>
             <dt>Limits</dt>
-            <dd>Tickets with several causes can land in the wrong category. Individual classifications are not approved one by one. The function owner reviews the report as a whole and confirms root causes before any action.</dd>
+            <dd>Tickets with several causes can land in the wrong category. The function owner confirms the cause before any action is taken.</dd>
           </dl>
         </div>
       </div></article>
@@ -330,13 +330,13 @@
       <details class="case-item" name="case">
         <summary>
           <span class="ci-num">05</span>
-          <span class="ci-text"><span class="ci-kind">Delivery</span><strong>Automated project management and tracking</strong><span class="ci-sum">Turned a written project plan into Jira tickets and a dashboard that stays in sync.</span></span>
+          <span class="ci-text"><span class="ci-kind">Delivery</span><strong>AI-assisted project planning and Jira tracking</strong><span class="ci-sum">Turned a written project plan into Jira tickets and a dashboard that stays in sync.</span></span>
           <span class="ci-chev" aria-hidden="true"></span>
         </summary>
       <article class="case"><div class="case-core">
         <div class="case-head">
           <span class="case-kind">Delivery</span>
-          <h3>Automated project management and tracking</h3>
+          <h3>AI-assisted project planning and Jira tracking</h3>
           <p class="case-problem"><span class="lbl">Problem</span><span class="txt">The project plan lived in a document and the work lived in Jira, so status had to be <mark class="hl">updated in two places</mark>.</span></p>
         </div>
         <div class="case-result">
@@ -351,7 +351,7 @@
           <ol>
             <li class="step src"><span>Source</span>Written project plan</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step ai"><span>AI</span>Build dashboard and tickets</li>
+            <li class="step ai"><span>AI</span>Draft tickets and first dashboard</li>
             <li class="arrow" aria-hidden="true"></li>
             <li class="step human"><span>Review</span>Project coordinator</li>
             <li class="arrow" aria-hidden="true"></li>
@@ -362,7 +362,7 @@
         </figure>
         <div class="case-main">
           <span class="case-label">Approach</span>
-          <p>An LLM turned the written project plan into a dashboard and a set of Jira tickets, assigned to people and sprints.</p><p>A weekly scheduled task updates the dashboard from Jira.</p>
+          <p>An LLM converted the written project plan into draft Jira tickets with proposed assignments and sprints, and created the first version of the dashboard.</p><p>The project coordinator reviewed the tickets and assignments. A weekly scheduled task refreshes the dashboard from Jira, which is the single source of status.</p>
         </div>
         <div class="case-side">
           <dl class="fields">
