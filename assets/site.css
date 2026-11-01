@@ -543,3 +543,5 @@ footer a { color: inherit; }
 .map-table td.map-src { white-space: normal; min-width: 11rem; }
 .map-table td.map-src .reg-link { display: inline-block; margin: 0 4px 4px 0; }
 .map-table td.txt b { font-weight: 600; }
+.map-table td:first-child { white-space: nowrap; }
+.map-table td.txt:first-child { white-space: normal; }
