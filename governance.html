@@ -160,8 +160,8 @@
               <thead><tr><th>ID</th><th>AI system</th><th>Owner</th><th>Data</th><th>Exposure</th><th>AI Act category</th><th>Access and keys</th><th>Approved by</th><th>Next review</th></tr></thead>
               <tbody>
                 <tr><td>AI-001</td><td>Coding assistant</td><td>Head of Engineering</td><td>Source code, no personal data</td><td>Internal</td><td><span class="cls">Minimal</span></td><td>SSO group; IT admins configure</td><td>CISO</td><td class="due">Sep 2027</td></tr>
-                <tr><td>AI-002</td><td>Customer support chatbot</td><td>Head of Customer Support</td><td>Knowledge base, chat transcripts (personal data)</td><td>Internet-facing</td><td><span class="cls limited">Limited (transparency)</span></td><td>Public; API key in vault, rotated every 90 days</td><td>Head of Customer Support</td><td class="due over">Overdue</td></tr>
-                <tr><td>AI-003</td><td>CV screening in HR system</td><td>HR Director</td><td>Applicant CVs (personal data)</td><td>Internal</td><td><span class="cls high">High-risk</span></td><td>Recruiters via SSO; HRIS admin only</td><td>Pending DPIA</td><td class="due">Apr 2027</td></tr>
+                <tr><td>AI-002</td><td>Customer support chatbot</td><td>Head of Customer Support</td><td>Knowledge base, chat transcripts (personal data)</td><td>Internet-facing</td><td><span class="cls limited">Limited (transparency)</span></td><td>Public; API key in vault, rotated every 90 days</td><td>Head of Customer Support</td><td class="due over">Overdue, escalated to owner</td></tr>
+                <tr><td>AI-003</td><td>CV screening in HR system</td><td>HR Director</td><td>Applicant CVs (personal data); DPIA in progress</td><td>Internal</td><td><span class="cls high">High-risk</span></td><td>Recruiters via SSO; HRIS admin only</td><td>Pending: AI governance board</td><td class="due">Apr 2027</td></tr>
                 <tr><td>AI-004</td><td>Ticket categorisation</td><td>Support function owner</td><td>Escalated tickets, names stripped</td><td>Internal</td><td><span class="cls">Minimal</span></td><td>Read-only service account; key in vault</td><td>Head of IT</td><td class="due">May 2027</td></tr>
               </tbody>
             </table>
@@ -259,7 +259,7 @@
               <span class="wf-num">4</span>
               <div class="wf-body">
                 <strong>Will the AI help decide something about a person, such as hiring, performance, credit or access to a service?</strong>
-                <p>Recruitment, performance, credit or access to essential services make it high-risk. Deployer obligations then apply: use according to the instructions, human oversight by competent staff, log retention and informing workers. They apply from 2 December 2027, so systems designed now must meet them.</p>
+                <p>Recruitment, performance, credit or access to essential services can make it high-risk, depending on the use case and the exceptions in Art. 6(3). Deployer obligations then apply: use according to the instructions, human oversight by competent staff, log retention and informing workers. They apply from 2 December 2027, so systems designed now must meet them.</p>
                 <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">AI Act Art. 6(2)</a> <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">Annex III</a> <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">Art. 26</a></span><span class="wf-then">Yes: the AI governance board decides.</span></div>
               </div>
             </li>
@@ -280,6 +280,7 @@
               </div>
             </li>
           </ol>
+          <p class="wf-route"><b>First screening, not a legal classification.</b> The AI governance lead or legal confirms the final AI Act classification.</p>
           <p class="wf-route"><b>Routing:</b> a possible prohibited practice goes to legal, high-risk AI to the AI governance board, AI that people interact with or that acts on its own to the AI governance lead, and other AI to the product owner. Changes without AI follow the normal process.</p>
           <div class="reg-foot">
             <span class="also">Article references as amended by Regulation (EU) 2026/1744.</span>
