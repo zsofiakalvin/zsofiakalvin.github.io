@@ -571,3 +571,5 @@ footer a { color: inherit; }
 @media (max-width: 640px) { .topnav { justify-content: flex-start; } .navlinks { justify-content: flex-start; } }
 
 html { scroll-behavior: smooth; }
+.cert-name a.verify { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 2px; }
+.cert-name a.verify:hover { text-decoration-color: var(--fg); }

@@ -76,6 +76,12 @@
         <p>In audit, <mark class="hl">evidence without a source does not count</mark>. Outputs keep a reference to the data they came from, so a reviewer can check them.</p>
         <span class="aligned">Aligned with NIST AI RMF: Govern, accountability and documentation</span>
       </div></div>
+      <div class="principle"><div class="principle-core">
+        <span class="p-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg></span>
+        <h3>Data is protected</h3>
+        <p>The automations run on Claude Enterprise, where company data is not used to train the model. Personal data is <mark class="hl">removed or pseudonymised before it reaches the model</mark>, and the security team configures the permissions of the MCP connections.</p>
+        <span class="aligned">Aligned with GDPR Art. 25, data protection by design; ISO/IEC 27001 A.8.11, data masking</span>
+      </div></div>
     </div>
   </section>
 
@@ -109,7 +115,7 @@
           <span>Outcome</span>
           <dl class="ba">
             <dt>Before</dt><dd>Test scripts were linked to each user&#x27;s transactions and mapped to the process by hand, which took a lot of time.</dd>
-            <dt>After</dt><dd>Test scripts based on each user&#x27;s actual usage and the process flows. Users moved to the new access setup <strong class="em">without disruption to their daily work</strong>.</dd>
+            <dt>After</dt><dd>Test scripts based on each user&#x27;s actual usage and the process flows. Users moved to the new SAP roles <strong class="em">without disruption to their daily work</strong>. Around 100 scripts were generated, about 80% were correct first time, and the rest were corrected from tester feedback in each release.</dd>
           </dl>
         </div>
         <figure class="flow">
@@ -131,7 +137,7 @@
         <div class="case-side">
           <dl class="fields">
             <dt>Stack</dt>
-            <dd class="tags"><span class="tag">Audit log</span><span class="tag">SharePoint</span><span class="tag">Excel</span><span class="tag">LLM</span><span class="tag">Confluence</span><span class="tag">MCP</span></dd>
+            <dd class="tags"><span class="tag">Audit log</span><span class="tag">SharePoint</span><span class="tag">Excel</span><span class="tag">Claude Enterprise</span><span class="tag">Confluence</span><span class="tag">MCP</span></dd>
             <dt>My role</dt>
             <dd>I designed and set up the approach, generated the scripts with the LLM and coordinated testing.</dd>
           </dl>
@@ -188,7 +194,7 @@
         <div class="case-side">
           <dl class="fields">
             <dt>Stack</dt>
-            <dd class="tags"><span class="tag">ERP data</span><span class="tag">SharePoint</span><span class="tag">LLM</span><span class="tag">Confluence</span><span class="tag">MCP</span></dd>
+            <dd class="tags"><span class="tag">ERP data</span><span class="tag">SharePoint</span><span class="tag">Claude Enterprise</span><span class="tag">Confluence</span><span class="tag">MCP</span></dd>
             <dt>My role</dt>
             <dd>I designed and set up the keyword approach and ran the AI analysis.</dd>
           </dl>
@@ -200,7 +206,7 @@
             <dt>Traceability</dt>
             <dd>Each risk and critical action links to the process flow it came from and to the documented mitigating control.</dd>
             <dt>Limits</dt>
-            <dd>Keyword matching can miss a risk described in other words, and process documentation can be out of date. The ruleset is a baseline, not a complete risk assessment.</dd>
+            <dd>Keyword matching can miss a risk described in other words, and process documentation can be out of date. The ruleset was validated by business process owners and functional SMEs, not benchmarked against a standard ruleset. It is a baseline, not a complete risk assessment.</dd>
           </dl>
         </div>
       </div></article>
@@ -221,7 +227,7 @@
           <span>Outcome</span>
           <dl class="ba">
             <dt>Before</dt><dd>No visibility of where the knowledge base falls short or where tickets get stuck.</dd>
-            <dt>After</dt><dd>Recurring escalations became visible by category. Many were already covered by existing procedures, so those were shared and training was added where the process was unclear. These escalations went down afterwards, although other changes in the same period may also have played a part.</dd>
+            <dt>After</dt><dd>Recurring escalations became visible by category. Many were already covered by existing procedures, so those were shared and training was added where the process was unclear. These escalations went down afterwards. This was observed, not measured, and other changes in the same period may have played a part.</dd>
           </dl>
         </div>
         <figure class="flow">
@@ -245,7 +251,7 @@
         <div class="case-side">
           <dl class="fields">
             <dt>Stack</dt>
-            <dd class="tags"><span class="tag">Jira</span><span class="tag">Confluence</span><span class="tag">MCP</span><span class="tag">LLM</span><span class="tag">Microsoft Office</span></dd>
+            <dd class="tags"><span class="tag">Jira</span><span class="tag">Confluence</span><span class="tag">MCP</span><span class="tag">Claude Enterprise</span><span class="tag">Microsoft Office</span></dd>
           <dt>Schedule</dt>
           <dd>Runs daily. Monthly summary to management.</dd>
             <dt>My role</dt>
@@ -302,7 +308,7 @@
         <div class="case-side">
           <dl class="fields">
             <dt>Stack</dt>
-            <dd class="tags"><span class="tag">ERP extract</span><span class="tag">Excel</span><span class="tag">LLM</span><span class="tag">Confluence</span><span class="tag">HTML</span></dd>
+            <dd class="tags"><span class="tag">ERP extract</span><span class="tag">Excel</span><span class="tag">Claude Enterprise</span><span class="tag">Confluence</span><span class="tag">HTML</span></dd>
           <dt>Refresh</dt>
           <dd>Weekly</dd>
             <dt>My role</dt>
@@ -361,7 +367,7 @@
         <div class="case-side">
           <dl class="fields">
             <dt>Stack</dt>
-            <dd class="tags"><span class="tag">LLM</span><span class="tag">Jira</span><span class="tag">Confluence</span><span class="tag">MCP</span><span class="tag">Microsoft Office</span></dd>
+            <dd class="tags"><span class="tag">Claude Enterprise</span><span class="tag">Jira</span><span class="tag">Confluence</span><span class="tag">MCP</span><span class="tag">Microsoft Office</span></dd>
           <dt>Schedule</dt>
           <dd>Weekly</dd>
             <dt>My role</dt>
