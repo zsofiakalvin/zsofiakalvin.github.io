@@ -494,6 +494,23 @@
   .reg-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
   .reg-foot .also { max-width: 60ch; }
   .next-steps { font-size: 0.88rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 4px; }
+
+  /* Decision workflow */
+  .wf { list-style: none; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+  .wf-item { display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: 14px; padding: 14px 16px; border-top: 1px solid var(--line); }
+  .wf-item:first-child { border-top: 0; }
+  .wf-num { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); width: 1.9rem; height: 1.9rem; border: 1px solid var(--line); border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; }
+  .wf-body { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .wf-body strong { font-weight: 600; font-size: 0.98rem; line-height: 1.4; }
+  .wf-body p { color: var(--muted); font-size: 0.9rem; line-height: 1.5; max-width: 80ch; }
+  .wf-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; justify-content: space-between; margin-top: 4px; }
+  .wf-regs { display: flex; flex-wrap: wrap; gap: 6px; }
+  .reg-link { font-family: var(--font-mono); font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; border: 1px solid var(--fg); text-decoration: none; white-space: nowrap; }
+  .reg-link:hover { background: var(--hl); color: #131518; border-color: #131518; }
+  .reg-link.plain { border-color: var(--line); color: var(--muted); }
+  .wf-then { font-size: 0.85rem; font-weight: 500; }
+  .wf-route { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+  .wf-route b { color: var(--fg); }
 </style>
 <link rel="canonical" href="https://zsofiakalvin.github.io/">
 <meta property="og:type" content="website">
@@ -698,59 +715,120 @@
           <span class="todo" style="align-self:flex-start">Worked example on a fictional company</span>
         </div>
         <figure class="flow">
-          <figcaption>How it works</figcaption>
+          <figcaption>Where it sits in the change lifecycle</figcaption>
           <ol>
-            <li class="step src"><span>Source</span>Developer answers 8 screening questions on the change ticket</li>
+            <li class="step src"><span>Refinement</span>PO or Scrum master attaches the screening form</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step src"><span>Rules</span>Fixed routing picks the approver</li>
+            <li class="step src"><span>Screening</span>Developer answers the 9 questions</li>
             <li class="arrow" aria-hidden="true"></li>
             <li class="step ai"><span>AI</span>Summary for the approver and draft registry row</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step human"><span>Review</span>Routed decision maker approves</li>
+            <li class="step human"><span>Approval</span>Routed decision maker sets conditions</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step out"><span>Output</span>Approval ID on the change, registry entry</li>
+            <li class="step src"><span>Release gate</span>No approval ID, no release</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step src"><span>Gate</span>Release blocked without approval</li>
+            <li class="step out"><span>Output</span>Registry entry and review date</li>
           </ol>
         </figure>
         <div class="case-main">
           <span class="case-label">Approach</span>
-          <p>Product owners and Scrum masters attach the screening form to every epic or change at refinement, and the developer answers it. Eight yes/no questions cover AI components, personal data, special category data, decisions about people, prohibited practices, external users, autonomous actions and new processors.</p><p>Fixed rules route the change. A possible prohibited practice goes to legal, high-risk AI to the AI governance board and DPO, privacy impact to the DPO, low-risk AI to the product owner. Changes with no AI or personal data follow the normal change process. An LLM summarises the answers for the approver and drafts the registry row. The change gate checks for an approval ID before release, and approval creates or updates the row in the AI asset registry.</p>
+          <p>The screening starts at refinement, before anything is built, because privacy by design and AI Act duties are much cheaper to meet at design time than after go-live. Product owners and Scrum masters attach the form to every epic or change, and the developer answers it.</p><p>The questions follow the order a reviewer would think: first whether the AI Act applies at all, then our role, then the hard stops, then risk level, then privacy. Each answer is tied to the article that makes it matter, so the approver sees why the question was asked. Fixed rules route the change to one decision maker, who approves with conditions. The release gate checks for the approval ID, and approval creates or updates the row in the AI asset registry.</p>
         </div>
         <div class="case-side">
           <dl class="fields">
             <dt>Stack</dt>
             <dd class="tags"><span class="tag">Jira forms</span><span class="tag">Jira automation</span><span class="tag">LLM</span><span class="tag">Change management</span><span class="tag">AI registry</span></dd>
             <dt>My role</dt>
-            <dd>I designed the questionnaire, the routing rules and the approval flow, and built the worked example.</dd>
+            <dd>I designed the decision workflow, the routing rules and the approval flow, and built the worked example.</dd>
           </dl>
           <dl class="fields gov">
             <dt>Control</dt>
             <dd>Routing uses fixed rules, not AI, so who approves is predictable and auditable. The decision maker approves; the LLM only summarises and drafts.</dd>
             <dt>Traceability</dt>
-            <dd>The answers, routing outcome, approver and approval date stay on the change ticket and link to the registry row.</dd>
+            <dd>The answers, the articles they trigger, the approver, the conditions and the approval date stay on the change ticket and link to the registry row.</dd>
             <dt>Limits</dt>
-            <dd>Screening relies on honest developer answers, so approvers spot-check them. Yes/no questions can miss edge cases, and unclear ones go to legal.</dd>
+            <dd>Screening relies on honest developer answers, so approvers spot-check them. Yes/no questions can miss edge cases, and unclear ones go to legal. This is a screening, not legal advice.</dd>
           </dl>
         </div>
         <figure class="registry">
-          <figcaption>Routing rules, first match wins</figcaption>
-          <div class="reg-scroll">
-            <table class="reg">
-              <thead><tr><th>Tier</th><th>When</th><th>Outcome</th><th>Routed to</th><th>DPIA</th><th>Example change</th></tr></thead>
-              <tbody>
-                <tr><td>1</td><td>Possible prohibited practice</td><td><span class="cls high">Blocked</span></td><td>Legal and AI governance board</td><td>Required</td><td>Detect employee mood in video calls</td></tr>
-                <tr><td>2</td><td>AI that affects decisions about people</td><td><span class="cls high">High-risk AI</span></td><td>AI governance board and DPO</td><td>Required</td><td>AI applicant ranking in the HR system</td></tr>
-                <tr><td>3</td><td>Special category data, new processor or data outside the EU</td><td><span class="cls limited">High privacy impact</span></td><td>DPO</td><td>Required</td><td>Move log storage to a US-based vendor</td></tr>
-                <tr><td>4</td><td>AI with external users or autonomous actions</td><td><span class="cls limited">AI review</span></td><td>AI governance lead</td><td>If personal data</td><td>AI agent that restarts failed servers</td></tr>
-                <tr><td>5</td><td>New use of personal data</td><td><span class="cls">Privacy check</span></td><td>DPO</td><td>Screening</td><td>New phone number field in billing</td></tr>
-                <tr><td>6</td><td>Other AI</td><td><span class="cls">Low-risk AI</span></td><td>Product owner</td><td>No</td><td>Internal code search with embeddings</td></tr>
-                <tr><td>7</td><td>No AI and no personal data</td><td><span class="cls">No impact</span></td><td>Standard change process</td><td>No</td><td>New button colours on the status page</td></tr>
-              </tbody>
-            </table>
-          </div>
+          <figcaption>Decision workflow: the questions, why each one matters, and the rule behind it</figcaption>
+          <ol class="wf">
+            <li class="wf-item">
+              <span class="wf-num">1</span>
+              <div class="wf-body">
+                <strong>Is it an AI system?</strong>
+                <p>Decides whether the AI Act applies at all. Many features sold as AI are fixed rules and fall outside it.</p>
+                <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://artificialintelligenceact.eu/article/3/" target="_blank" rel="noopener">AI Act Art. 3(1)</a></span><span class="wf-then">No: skip to step 6, privacy only.</span></div>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">2</span>
+              <div class="wf-body">
+                <strong>Are we the provider or the deployer?</strong>
+                <p>Providers carry most obligations. Putting our name on a system or substantially modifying it can make us the provider.</p>
+                <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://artificialintelligenceact.eu/article/3/" target="_blank" rel="noopener">AI Act Art. 3(3), 3(4)</a> <a class="reg-link" href="https://artificialintelligenceact.eu/article/25/" target="_blank" rel="noopener">Art. 25</a></span><span class="wf-then">Record the role on the ticket and in the registry.</span></div>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">3</span>
+              <div class="wf-body">
+                <strong>Could it be a prohibited practice?</strong>
+                <p>No approval can make it legal: for example emotion recognition at work, social scoring or manipulative techniques. The list was extended in 2026.</p>
+                <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://artificialintelligenceact.eu/article/5/" target="_blank" rel="noopener">AI Act Art. 5</a> <a class="reg-link" href="https://artificialintelligenceact.eu/ai-act-explorer/digital-omnibus/" target="_blank" rel="noopener">Reg. (EU) 2026/1744</a></span><span class="wf-then">Yes: <b>stop</b>. Legal and AI governance board.</span></div>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">4</span>
+              <div class="wf-body">
+                <strong>Does it make or influence decisions about people in an Annex III area?</strong>
+                <p>Recruitment, performance, credit or access to essential services make it high-risk. Deployer duties then apply: use as instructed, competent human oversight, keep logs, inform workers. These apply from 2 December 2027, so anything designed now must be ready for them.</p>
+                <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://artificialintelligenceact.eu/article/6/" target="_blank" rel="noopener">AI Act Art. 6(2)</a> <a class="reg-link" href="https://artificialintelligenceact.eu/annex/3/" target="_blank" rel="noopener">Annex III</a> <a class="reg-link" href="https://artificialintelligenceact.eu/article/26/" target="_blank" rel="noopener">Art. 26</a></span><span class="wf-then">Yes: AI governance board and DPO, DPIA required.</span></div>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">5</span>
+              <div class="wf-body">
+                <strong>Will people interact with it or see AI-generated content?</strong>
+                <p>People must be told they are dealing with AI, and generated content must be identifiable. Applies since 2 August 2026.</p>
+                <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://artificialintelligenceact.eu/article/50/" target="_blank" rel="noopener">AI Act Art. 50</a></span><span class="wf-then">Yes: AI governance lead. Disclosure becomes a release condition.</span></div>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">6</span>
+              <div class="wf-body">
+                <strong>Does it use personal data in a new way or for a new purpose?</strong>
+                <p>Privacy by design means the check happens at design time, not after go-live. The record of processing needs updating.</p>
+                <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://gdpr-info.eu/art-25-gdpr/" target="_blank" rel="noopener">GDPR Art. 25</a> <a class="reg-link" href="https://gdpr-info.eu/art-30-gdpr/" target="_blank" rel="noopener">Art. 30</a></span><span class="wf-then">Yes: DPO privacy check.</span></div>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">7</span>
+              <div class="wf-body">
+                <strong>Is the processing likely to be high risk for people?</strong>
+                <p>Special category data, automated decisions with legal effect, systematic monitoring or new technology at scale all point to a DPIA.</p>
+                <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://gdpr-info.eu/art-35-gdpr/" target="_blank" rel="noopener">GDPR Art. 35</a> <a class="reg-link" href="https://gdpr-info.eu/art-9-gdpr/" target="_blank" rel="noopener">Art. 9</a> <a class="reg-link" href="https://gdpr-info.eu/art-22-gdpr/" target="_blank" rel="noopener">Art. 22</a></span><span class="wf-then">Yes: DPIA before build starts.</span></div>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">8</span>
+              <div class="wf-body">
+                <strong>Does data go to a new processor or outside the EU?</strong>
+                <p>A new processor needs a data processing agreement, and a transfer outside the EU needs a legal basis for the transfer.</p>
+                <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://gdpr-info.eu/art-28-gdpr/" target="_blank" rel="noopener">GDPR Art. 28</a> <a class="reg-link" href="https://gdpr-info.eu/chapter-5/" target="_blank" rel="noopener">Chapter V</a></span><span class="wf-then">Yes: DPO. Agreement and transfer check before go-live.</span></div>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">9</span>
+              <div class="wf-body">
+                <strong>Can it act on other systems on its own?</strong>
+                <p>An AI agent inherits every permission it runs with. It needs least privilege, a named owner for its service account, and a person who can stop it.</p>
+                <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://artificialintelligenceact.eu/article/14/" target="_blank" rel="noopener">AI Act Art. 14</a> <span class="reg-link plain">ISO/IEC 27001 A.5.15, A.8.32</span></span><span class="wf-then">Yes: AI governance lead and access review.</span></div>
+              </div>
+            </li>
+          </ol>
+          <p class="wf-route"><b>Routing:</b> the first "stop" or highest-risk answer decides the approver: legal, then AI governance board and DPO, then DPO or AI governance lead, then product owner for other AI. Changes with no AI and no personal data follow the normal change process. Release gate: <span class="reg-link plain">ISO/IEC 27001 A.8.32</span> change management. Everyone using the result gets AI literacy support: <a class="reg-link" href="https://artificialintelligenceact.eu/article/4/" target="_blank" rel="noopener">AI Act Art. 4</a>.</p>
           <div class="reg-foot">
-            <span class="also">The template has the 8 screening questions, the routing rules, and a change log where routing, DPIA need, release gate and registry action are calculated from the answers.</span>
+            <span class="also">Article references as amended by the Digital Omnibus, Regulation (EU) 2026/1744. The template has the questions with their articles, the routing rules, and a change log where routing, DPIA need, release gate and registry action are calculated from the answers.</span>
             <a class="btn" href="assets/ai-change-screening-template.xlsx" download>Download template (.xlsx) <span class="ic" aria-hidden="true">&#8595;</span></a>
           </div>
         </figure>
