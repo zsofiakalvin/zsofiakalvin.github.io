@@ -558,3 +558,7 @@ footer a { color: inherit; }
 @media (max-width: 860px) { .gl-groups { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 420px) { .gl { grid-template-columns: minmax(0, 1fr); } .gl dd { border-top: 0; padding-top: 0; } }
 .gl dd .gl-src { display: block; margin-top: 3px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--fg); opacity: 0.7; }
+/* Nav without name */
+.topnav { justify-content: center; padding: 6px; }
+.navlinks { justify-content: center; }
+@media (max-width: 640px) { .topnav { justify-content: flex-start; } .navlinks { justify-content: flex-start; } }
