@@ -233,20 +233,20 @@
           </dl>
         </div>
         <figure class="registry">
-          <figcaption>Decision workflow: the questions, why each one matters, and the rule behind it</figcaption>
+          <figcaption>Decision workflow: the questions developers answer, why each one matters, and the rule behind it</figcaption>
           <ol class="wf">
             <li class="wf-item">
               <span class="wf-num">1</span>
               <div class="wf-body">
-                <strong>Is it an AI system?</strong>
-                <p>Decides whether the AI Act applies at all. Many features sold as AI are fixed rules and fall outside it.</p>
+                <strong>Does the change use or include an AI system? For example ChatGPT, Claude, Gemini, Microsoft Copilot, Claude Code, Codex, or an AI feature inside another tool.</strong>
+                <p>Decides whether the AI Act applies. Features that only follow fixed rules are not AI.</p>
                 <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">AI Act Art. 3(1)</a></span><span class="wf-then">No: go to question 6, privacy only.</span></div>
               </div>
             </li>
             <li class="wf-item">
               <span class="wf-num">2</span>
               <div class="wf-body">
-                <strong>Are we the provider or the deployer?</strong>
+                <strong>Are we building the AI ourselves or selling it under our own name, or are we only using someone else&#x27;s AI tool?</strong>
                 <p>Providers carry most obligations. Putting our name on a system or substantially modifying it can make us the provider.</p>
                 <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">AI Act Art. 3(3), 3(4)</a> <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">Art. 25</a></span><span class="wf-then">Record the role on the ticket and in the registry.</span></div>
               </div>
@@ -254,7 +254,7 @@
             <li class="wf-item">
               <span class="wf-num">3</span>
               <div class="wf-body">
-                <strong>Could it be a prohibited practice?</strong>
+                <strong>Could it be used to recognise employees&#x27; emotions, score people on their behaviour, manipulate people, or collect face images from the internet?</strong>
                 <p>These practices are banned and cannot be approved, for example emotion recognition at work, social scoring or manipulative techniques. The list was extended in 2026.</p>
                 <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">AI Act Art. 5</a> <a class="reg-link" href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202601744" target="_blank" rel="noopener">Reg. (EU) 2026/1744</a></span><span class="wf-then">Yes: <b>stop</b> and escalate to legal and the AI governance board.</span></div>
               </div>
@@ -262,7 +262,7 @@
             <li class="wf-item">
               <span class="wf-num">4</span>
               <div class="wf-body">
-                <strong>Does it make or influence decisions about people in an Annex III area?</strong>
+                <strong>Will the AI help decide something about a person, such as hiring, performance, credit or access to a service?</strong>
                 <p>Recruitment, performance, credit or access to essential services make it high-risk. Deployer obligations then apply: use according to the instructions, human oversight by competent staff, log retention and informing workers. They apply from 2 December 2027, so systems designed now must meet them.</p>
                 <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">AI Act Art. 6(2)</a> <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">Annex III</a> <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">Art. 26</a></span><span class="wf-then">Yes: AI governance board and DPO, DPIA required.</span></div>
               </div>
@@ -270,7 +270,7 @@
             <li class="wf-item">
               <span class="wf-num">5</span>
               <div class="wf-body">
-                <strong>Will people interact with it or see AI-generated content?</strong>
+                <strong>Will customers or other people talk to the AI, or see text, images or video it created?</strong>
                 <p>People must be told they are dealing with AI, and generated content must be identifiable. Applies from 2 August 2026.</p>
                 <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">AI Act Art. 50</a></span><span class="wf-then">Yes: AI governance lead. Disclosure becomes a release condition.</span></div>
               </div>
@@ -278,7 +278,7 @@
             <li class="wf-item">
               <span class="wf-num">6</span>
               <div class="wf-body">
-                <strong>Does it use personal data in a new way or for a new purpose?</strong>
+                <strong>Will it use personal data, such as names, email addresses or customer IDs, in a new way or for a new purpose?</strong>
                 <p>Privacy by design means the check happens at design time, not after go-live. The record of processing activities must be updated.</p>
                 <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank" rel="noopener">GDPR Art. 25</a> <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank" rel="noopener">Art. 30</a></span><span class="wf-then">Yes: DPO privacy check.</span></div>
               </div>
@@ -286,7 +286,7 @@
             <li class="wf-item">
               <span class="wf-num">7</span>
               <div class="wf-body">
-                <strong>Is the processing likely to be high risk for people?</strong>
+                <strong>Will it use sensitive data such as health or biometric data, make automatic decisions about people, or monitor people on a large scale?</strong>
                 <p>Special category data, automated decisions with legal effect, systematic monitoring or new technology at scale all point to a DPIA.</p>
                 <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank" rel="noopener">GDPR Art. 35</a> <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank" rel="noopener">Art. 9</a> <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank" rel="noopener">Art. 22</a></span><span class="wf-then">Yes: DPIA before build starts.</span></div>
               </div>
@@ -294,7 +294,7 @@
             <li class="wf-item">
               <span class="wf-num">8</span>
               <div class="wf-body">
-                <strong>Does data go to a new processor or outside the EU?</strong>
+                <strong>Will data go to a new supplier, or be stored or processed outside the EU?</strong>
                 <p>A new processor needs a data processing agreement, and a transfer outside the EU needs a valid transfer mechanism.</p>
                 <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank" rel="noopener">GDPR Art. 28</a> <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank" rel="noopener">Chapter V</a></span><span class="wf-then">Yes: DPO. Agreement and transfer check before go-live.</span></div>
               </div>
@@ -302,7 +302,7 @@
             <li class="wf-item">
               <span class="wf-num">9</span>
               <div class="wf-body">
-                <strong>Can it act on other systems on its own?</strong>
+                <strong>Can the AI do things in other systems on its own, such as create tickets, send emails or change settings?</strong>
                 <p>An AI agent can do everything its account is allowed to do. It needs least privilege, a named owner for its service account, and a person who can stop it.</p>
                 <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">AI Act Art. 14</a> <a class="reg-link" href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001 A.5.15, A.8.32</a></span><span class="wf-then">Yes: AI governance lead and access review.</span></div>
               </div>
