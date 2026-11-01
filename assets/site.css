@@ -527,3 +527,16 @@
 .brand { text-decoration: none; }
 .navlinks a[aria-current="page"] { color: var(--fg); background: var(--shell); }
 .fields.gov dd.wf-regs { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* Sources appendix */
+.src-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.src-group { border: 1px solid var(--line); border-radius: 22px; padding: 20px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.src-group h3 { font-family: var(--font-display); font-weight: 700; font-size: 1rem; }
+.src-list { list-style: none; display: flex; flex-direction: column; }
+.src-list li { display: flex; flex-direction: column; gap: 2px; padding-block: 10px; border-top: 1px solid var(--line); }
+.src-list li:first-child { border-top: 0; padding-top: 0; }
+.src-list a { font-weight: 600; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.src-list a:hover { text-decoration-color: var(--fg); }
+.src-list span { font-size: 0.85rem; color: var(--muted); }
+footer a { color: inherit; }
+@media (max-width: 760px) { .src-groups { grid-template-columns: minmax(0, 1fr); } }
