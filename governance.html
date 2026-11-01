@@ -112,7 +112,7 @@
           <span>Outcome</span>
           <dl class="ba">
             <dt>Before</dt><dd>Unclear governance around AI assets.</dd>
-            <dt>After</dt><dd>An <strong class="em">AI asset registry</strong> with an owner, data, access and AI Act risk category for every AI system.</dd>
+            <dt>After</dt><dd>An <strong class="em">AI asset registry</strong> with an owner, data, access and AI Act risk category for every AI system, <strong class="em">reviewed periodically</strong>.</dd>
           </dl>
           <span class="todo" style="align-self:flex-start">Anonymised example</span>
         </div>
@@ -129,7 +129,7 @@
             <li class="arrow" aria-hidden="true"></li>
             <li class="step out"><span>Output</span>AI asset registry</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step src"><span>Repeat</span>New AI systems added, periodic review</li>
+            <li class="step src"><span>Repeat</span>Periodic review: every 6 or 12 months</li>
           </ol>
         </figure>
         <div class="case-main">
@@ -190,34 +190,34 @@
           <span>Outcome</span>
           <dl class="ba">
             <dt>Before</dt><dd>No privacy or AI assessment in the change process, and unclear approval responsibilities.</dd>
-            <dt>After</dt><dd>Every change is screened at refinement, <strong class="em">routed automatically to the right approver</strong>, and cannot be released without approval. Approved AI changes are added to the registry.</dd>
+            <dt>After</dt><dd>Every user story is screened during refinement, <strong class="em">the right approver gets an approval ticket automatically</strong>, and approved AI changes are added to the registry.</dd>
           </dl>
           <span class="todo" style="align-self:flex-start">Anonymised example</span>
         </div>
         <figure class="flow">
-          <figcaption>Where it sits in the change lifecycle</figcaption>
+          <figcaption>Where it sits in the agile cycle</figcaption>
           <ol>
-            <li class="step src"><span>Refinement</span>PO or Scrum master shares the Microsoft Forms link</li>
+            <li class="step src"><span>Refinement</span>PO adds the AI and privacy form to the user story</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step src"><span>Screening</span>Developer answers the 9 questions</li>
+            <li class="step src"><span>Developer</span>Fills in the form</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step ai"><span>AI</span>Power Automate drafts a summary for the approver</li>
+            <li class="step src"><span>Power Automate</span>Opens an approval ticket for the right approver</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step human"><span>Approval</span>SharePoint approval sent to the routed approver</li>
+            <li class="step human"><span>Approver</span>Approves or rejects</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step src"><span>Release gate</span>Release blocked without approval</li>
+            <li class="step src"><span>Definition of Done</span>No release without approval</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step out"><span>Output</span>Registry entry and stakeholders notified</li>
+            <li class="step out"><span>Output</span>AI registry updated, then reviewed periodically</li>
           </ol>
         </figure>
         <div class="case-main">
           <span class="case-label">Approach</span>
-          <p>The screening starts at refinement, before anything is built, because privacy by design and AI Act obligations are much cheaper to meet at design time than after go-live. Product owners and Scrum masters share a Microsoft Forms questionnaire for every epic or change, and the developer fills it in.</p><p>The questions follow a logical order: first whether the AI Act applies, then the company&#x27;s role, then prohibited practices, then the risk level, then privacy. Each question refers to the article it is based on, so the approver can see why it was asked. Fixed rules route the change to one approver, who decides with conditions. The release gate checks for the approval ID, and approval creates or updates the row in the AI asset registry.</p>
+          <p>The screening is part of the agile cycle. During refinement, the product owner adds the AI and privacy form to the user story, and the developer fills it in before work starts. Power Automate reads the answers, picks the approver with fixed rules and opens an approval ticket.</p><p>Approval is part of the Definition of Done, so the story cannot be released without it. When an AI change is approved, it is added to the AI asset registry.</p>
         </div>
         <div class="case-side">
           <dl class="fields">
             <dt>Stack</dt>
-            <dd class="tags"><span class="tag">Microsoft Forms</span><span class="tag">Power Automate</span><span class="tag">SharePoint lists</span><span class="tag">Approvals</span><span class="tag">Teams</span><span class="tag">LLM</span><span class="tag">Jira</span></dd>
+            <dd class="tags"><span class="tag">Microsoft Forms</span><span class="tag">Power Automate</span><span class="tag">SharePoint</span><span class="tag">Jira</span></dd>
             <dt>My role</dt>
             <dd>I designed the decision workflow, the routing rules and the approval flow, and built the anonymised example.</dd>
           </dl>
@@ -225,76 +225,16 @@
             <dt>Standards and frameworks</dt>
             <dd class="wf-regs"><a class="reg-link" href="https://www.iso.org/standard/42001" target="_blank" rel="noopener">ISO/IEC 42001 6.1.4, 8.4, A.5, A.6</a> <a class="reg-link" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">NIST AI RMF Map</a> <a class="reg-link" href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001 A.8.25, A.8.32</a> <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank" rel="noopener">GDPR Art. 25</a> <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank" rel="noopener">Art. 35</a></dd>
             <dt>Control</dt>
-            <dd>Routing uses fixed rules, not AI, so who approves is predictable and auditable. The approver decides; the LLM only summarises and drafts.</dd>
+            <dd>Routing uses fixed rules, so who approves is predictable and auditable. Only the approver can approve.</dd>
             <dt>Traceability</dt>
-            <dd>The answers, the articles they trigger, the approver, the conditions and the approval date are kept in the SharePoint screening log and linked to the change ticket and the registry entry.</dd>
+            <dd>The answers, approver and decision are kept on the approval ticket and linked to the user story and the registry entry.</dd>
             <dt>Limits</dt>
             <dd>Screening relies on honest developer answers, so approvers spot-check them. Yes/no questions can miss edge cases, and unclear ones go to legal. This is a screening, not legal advice.</dd>
           </dl>
         </div>
+        
         <figure class="registry">
-          <figcaption>Power Automate flow: from form response to approval and registry entry</figcaption>
-          <ol class="wf">
-            <li class="wf-item">
-              <span class="wf-num">1</span>
-              <div class="wf-body">
-                <strong>Trigger</strong>
-                <p>When a new response is submitted in Microsoft Forms, the flow gets the response details.</p>
-              </div>
-            </li>
-            <li class="wf-item">
-              <span class="wf-num">2</span>
-              <div class="wf-body">
-                <strong>Log</strong>
-                <p>The answers are saved as an item in a SharePoint list, the screening log, linked to the change ticket.</p>
-              </div>
-            </li>
-            <li class="wf-item">
-              <span class="wf-num">3</span>
-              <div class="wf-body">
-                <strong>Route</strong>
-                <p>A condition applies the routing rules and picks the approver: legal, AI governance board, DPO, AI governance lead or product owner. Without AI or personal data, the flow closes and the normal change process continues.</p>
-              </div>
-            </li>
-            <li class="wf-item">
-              <span class="wf-num">4</span>
-              <div class="wf-body">
-                <strong>Summarise</strong>
-                <p>An LLM step writes a short summary of the answers and the articles they trigger, for the approver.</p>
-              </div>
-            </li>
-            <li class="wf-item">
-              <span class="wf-num">5</span>
-              <div class="wf-body">
-                <strong>Approve</strong>
-                <p>The flow starts an approval to the routed approver, in Teams, Outlook or the Approvals app. The approver can approve, reject or add conditions.</p>
-              </div>
-            </li>
-            <li class="wf-item">
-              <span class="wf-num">6</span>
-              <div class="wf-body">
-                <strong>Record</strong>
-                <p>The decision, approver, date and conditions are written back to the SharePoint item, and the approval ID is added to the change ticket.</p>
-              </div>
-            </li>
-            <li class="wf-item">
-              <span class="wf-num">7</span>
-              <div class="wf-body">
-                <strong>Register</strong>
-                <p>If the change includes AI and is approved, the flow creates or updates the item in the AI asset registry list.</p>
-              </div>
-            </li>
-            <li class="wf-item">
-              <span class="wf-num">8</span>
-              <div class="wf-body">
-                <strong>Notify</strong>
-                <p>The product owner, the developer and the relevant stakeholders get the result by email or Teams. Rejected or pending changes stay blocked at the release gate.</p>
-              </div>
-            </li>
-          </ol>
-        </figure>
-        <figure class="registry">
-          <figcaption>Decision workflow: the questions developers answer, why each one matters, and the rule behind it</figcaption>
+          <figcaption>The form: nine questions, why each one matters, and the rule behind it</figcaption>
           <ol class="wf">
             <li class="wf-item">
               <span class="wf-num">1</span>
@@ -369,9 +309,9 @@
               </div>
             </li>
           </ol>
-          <p class="wf-route"><b>Routing:</b> the first "stop" or highest-risk answer decides the approver: legal, then AI governance board and DPO, then DPO or AI governance lead, then product owner for other AI. Changes with no AI and no personal data follow the normal change process. For high-risk AI the board also asks for an AI system impact assessment (<a class="reg-link" href="https://www.iso.org/standard/42001" target="_blank" rel="noopener">ISO/IEC 42001 6.1.4, A.5</a>). It goes wider than a DPIA: fairness, transparency and effects on groups and society, not only privacy. Release gate: <a class="reg-link" href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001 A.8.32</a> change management. Staff using the system receive AI literacy training: <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">AI Act Art. 4</a>.</p>
+          <p class="wf-route"><b>Routing:</b> a possible prohibited practice goes to legal, high-risk AI to the AI governance board and the DPO, privacy impact to the DPO, and other AI to the product owner. Changes without AI or personal data follow the normal process.</p>
           <div class="reg-foot">
-            <span class="also">Article references as amended by the Digital Omnibus, Regulation (EU) 2026/1744. The template has the questions with their articles, the routing rules, and a change log where routing, DPIA need, release gate and registry action are calculated from the answers.</span>
+            <span class="also">Article references as amended by Regulation (EU) 2026/1744. The template has the questions, the routing rules and an example change log.</span>
             <a class="btn" href="assets/ai-change-screening-template.xlsx" download>Download template (.xlsx) <span class="ic" aria-hidden="true">&#8595;</span></a>
           </div>
         </figure>
