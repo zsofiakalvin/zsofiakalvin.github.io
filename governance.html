@@ -103,13 +103,13 @@
         <div class="case-head">
           <span class="case-kind">AI inventory</span>
           <h3>AI asset registry</h3>
-          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">There is <mark class="hl">no complete inventory of AI assets</mark>. AI systems have no assigned owner, and it is unclear which ones process personal data, who has access to them, and which fall under the EU AI Act.</span></p>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">The organisation has <mark class="hl">no reliable inventory of AI systems</mark>. Ownership, data use, access and applicable AI Act obligations are not consistently recorded.</span></p>
         </div>
         <div class="case-result">
           <span>Outcome</span>
           <dl class="ba">
             <dt>Before</dt><dd>Unclear governance around AI assets.</dd>
-            <dt>After</dt><dd>An <strong class="em">AI asset registry</strong> with an owner, data, access and AI Act risk category for every AI system, <strong class="em">reviewed periodically</strong>.</dd>
+            <dt>After</dt><dd>An <strong class="em">AI asset registry</strong> with an owner, data, access, initial AI Act classification and internal risk level for every identified AI system, <strong class="em">reviewed periodically</strong>.</dd>
           </dl>
           <span class="todo" style="align-self:flex-start">Example design</span>
         </div>
@@ -154,15 +154,15 @@
           </dl>
         </div>
         <figure class="registry">
-          <figcaption>Registry preview, example data (9 of 28 fields)</figcaption>
+          <figcaption>Registry preview, example data (10 of 28 fields)</figcaption>
           <div class="reg-scroll">
             <table class="reg">
-              <thead><tr><th>ID</th><th>AI system</th><th>Owner</th><th>Data</th><th>Exposure</th><th>AI Act category</th><th>Access and keys</th><th>Approved by</th><th>Next review</th></tr></thead>
+              <thead><tr><th>ID</th><th>AI system</th><th>Owner</th><th>Data</th><th>Exposure</th><th>AI Act (initial)</th><th>Internal risk</th><th>Access and keys</th><th>Approval</th><th>Next review</th></tr></thead>
               <tbody>
-                <tr><td>AI-001</td><td>Coding assistant</td><td>Head of Engineering</td><td>Source code, no personal data</td><td>Internal</td><td><span class="cls">Minimal</span></td><td>SSO group; IT admins configure</td><td>CISO</td><td class="due">Sep 2027</td></tr>
-                <tr><td>AI-002</td><td>Customer support chatbot</td><td>Head of Customer Support</td><td>Knowledge base, chat transcripts (personal data)</td><td>Internet-facing</td><td><span class="cls limited">Limited (transparency)</span></td><td>Public; API key in vault, rotated every 90 days</td><td>Head of Customer Support</td><td class="due over">Overdue, escalated to owner</td></tr>
-                <tr><td>AI-003</td><td>CV screening in HR system</td><td>HR Director</td><td>Applicant CVs (personal data); DPIA in progress</td><td>Internal</td><td><span class="cls high">High-risk</span></td><td>Recruiters via SSO; HRIS admin only</td><td>Pending: AI governance board</td><td class="due">Apr 2027</td></tr>
-                <tr><td>AI-004</td><td>Ticket categorisation</td><td>Support function owner</td><td>Escalated tickets, names stripped</td><td>Internal</td><td><span class="cls">Minimal</span></td><td>Read-only service account; key in vault</td><td>Head of IT</td><td class="due">May 2027</td></tr>
+                <tr><td>AI-001</td><td>Coding assistant</td><td>Head of Engineering</td><td>Source code, no personal data</td><td>Internal</td><td><span class="cls">Minimal risk</span></td><td>Low</td><td>SSO group; IT admins configure</td><td>Approved: CISO</td><td class="due">Sep 2027</td></tr>
+                <tr><td>AI-002</td><td>Customer support chatbot</td><td>Head of Customer Support</td><td>Knowledge base, chat transcripts (personal data)</td><td>Internet-facing</td><td><span class="cls limited">Art. 50 transparency</span></td><td>Medium</td><td>Public; API key in vault, rotated every 90 days</td><td>Approved: Head of Customer Support</td><td class="due over">Overdue, escalated to owner</td></tr>
+                <tr><td>AI-003</td><td>CV screening in HR system</td><td>HR Director</td><td>Applicant CVs (personal data); DPIA in progress</td><td>Internal</td><td><span class="cls high">Possibly high-risk</span><br>Annex III; legal to confirm</td><td>High</td><td>Recruiters via SSO; HRIS admin only</td><td>Pending: AI governance board</td><td class="due">Apr 2027</td></tr>
+                <tr><td>AI-004</td><td>Ticket categorisation</td><td>Support function owner</td><td>Escalated tickets, names stripped</td><td>Internal</td><td><span class="cls">Minimal risk</span></td><td>Low</td><td>Read-only service account; key in vault</td><td>Approved: Head of IT</td><td class="due">May 2027</td></tr>
               </tbody>
             </table>
           </div>
@@ -179,13 +179,13 @@
         <div class="case-head">
           <span class="case-kind">AI in the development lifecycle</span>
           <h3>AI risk assessment in the change management process</h3>
-          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">New AI development is not identified before go-live. AI features <mark class="hl">reach production without an AI risk assessment</mark>.</span></p>
+          <p class="case-problem"><span class="lbl">Problem</span><span class="txt">AI-related changes, including new AI features in supplier tools and changes to existing systems, can <mark class="hl">reach production without being identified, assessed or approved</mark>.</span></p>
         </div>
         <div class="case-result">
           <span>Outcome</span>
           <dl class="ba">
             <dt>Before</dt><dd>No AI risk assessment in the change process, and unclear approval responsibilities.</dd>
-            <dt>After</dt><dd>Every user story is screened during refinement, <strong class="em">the right approver gets an approval ticket automatically</strong>, and approved AI changes are added to the registry.</dd>
+            <dt>After</dt><dd>Every user story is screened during refinement, <strong class="em">AI-related changes are routed to the required approvers automatically</strong>, and approved AI changes are added to the registry.</dd>
           </dl>
           <span class="todo" style="align-self:flex-start">Example design</span>
         </div>
@@ -200,14 +200,14 @@
             <li class="arrow" aria-hidden="true"></li>
             <li class="step human"><span>Approver</span>Approves or rejects</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step src"><span>Definition of Done</span>No release without approval</li>
+            <li class="step src"><span>Definition of Done</span>Jira blocks Done until approval is closed</li>
             <li class="arrow" aria-hidden="true"></li>
             <li class="step out"><span>Output</span>AI registry updated, then reviewed periodically</li>
           </ol>
         </figure>
         <div class="case-main">
           <span class="case-label">Approach</span>
-          <p>AI screening is part of the existing agile process. During refinement, the product owner adds the screening form to the user story, and the developer completes it before work starts.</p><p>Power Automate checks the answers, uses fixed rules to identify the right approver and creates an approval ticket.</p><p>Approval is part of the Definition of Done, so the change cannot be released without it. Once the AI-related change is approved, the AI asset registry is updated.</p>
+          <p>AI screening is part of the existing agile process. During refinement, the product owner adds the screening form to the user story, and the developer completes it before work starts.</p><p>Power Automate checks the answers, uses fixed rules to identify the right approver and creates an approval ticket.</p><p>Approval is part of the Definition of Done, and the gate is technical: the Jira workflow does not let the story move to Done until the approval ticket is closed. Once the AI-related change is approved, the AI asset registry is updated.</p>
         </div>
         <div class="case-side">
           <dl class="fields">
@@ -235,7 +235,7 @@
               <span class="wf-num">1</span>
               <div class="wf-body">
                 <strong>Does the change use or include an AI system? For example ChatGPT, Claude, Gemini, Microsoft Copilot, Claude Code, Codex, or an AI feature inside another tool.</strong>
-                <p>Decides whether the AI Act applies. Features that only follow fixed rules are not AI.</p>
+                <p>Flags changes that may involve an AI system under the EU AI Act. Software that only follows predefined rules generally falls outside the definition. Unclear cases go to the AI governance lead.</p>
                 <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">AI Act Art. 3(1)</a></span><span class="wf-then">No: no further questions. The normal change process applies.</span></div>
               </div>
             </li>
@@ -243,7 +243,7 @@
               <span class="wf-num">2</span>
               <div class="wf-body">
                 <strong>Are you developing your own AI, or using an AI tool from a supplier?</strong>
-                <p>Providers carry most obligations. Putting our name on a system or substantially modifying it can make us the provider.</p>
+                <p>Obligations depend on whether we are the provider or the deployer. Putting our name on a system or substantially modifying it can make us the provider.</p>
                 <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">AI Act Art. 3(3), 3(4)</a> <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">Art. 25</a></span><span class="wf-then">Record the role on the ticket and in the registry.</span></div>
               </div>
             </li>
@@ -259,7 +259,7 @@
               <span class="wf-num">4</span>
               <div class="wf-body">
                 <strong>Will the AI help decide something about a person, such as hiring, performance, credit or access to a service?</strong>
-                <p>Recruitment, performance, credit or access to essential services can make it high-risk, depending on the use case and the exceptions in Art. 6(3). Deployer obligations then apply: use according to the instructions, human oversight by competent staff, log retention and informing workers. They apply from 2 December 2027, so systems designed now must meet them.</p>
+                <p>AI used in recruitment, performance management, creditworthiness or access to essential services may be high-risk under Annex III, depending on the intended use and the exceptions in Article 6(3). If it is, deployer obligations apply: use according to the instructions, human oversight by competent staff, log retention and informing workers. They apply from 2 December 2027, so systems designed now should already meet them.</p>
                 <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">AI Act Art. 6(2)</a> <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">Annex III</a> <a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">Art. 26</a></span><span class="wf-then">Yes: the AI governance board decides.</span></div>
               </div>
             </li>
@@ -275,13 +275,13 @@
               <span class="wf-num">6</span>
               <div class="wf-body">
                 <strong>Can the AI do things in other systems on its own, such as create tickets, send emails or change settings?</strong>
-                <p>An AI agent can do everything its account is allowed to do. It needs least privilege, a named owner for its service account, and a person who can stop it.</p>
+                <p>An AI agent can do anything its account is allowed to do. It needs least privilege, a named owner for its service account, logging, and a person who can stop it.</p>
                 <div class="wf-meta"><span class="wf-regs"><a class="reg-link" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">AI Act Art. 14</a> <a class="reg-link" href="https://www.iso.org/standard/27001" target="_blank" rel="noopener">ISO/IEC 27001 A.5.15, A.8.32</a></span><span class="wf-then">Yes: AI governance lead and access review.</span></div>
               </div>
             </li>
           </ol>
           <p class="wf-route"><b>First screening, not a legal classification.</b> The AI governance lead or legal confirms the final AI Act classification.</p>
-          <p class="wf-route"><b>Routing:</b> a possible prohibited practice goes to legal, high-risk AI to the AI governance board, AI that people interact with or that acts on its own to the AI governance lead, and other AI to the product owner. Changes without AI follow the normal process.</p>
+          <p class="wf-route"><b>Routing:</b> a possible prohibited practice is stopped and goes to legal. Possible high-risk AI goes to the AI governance board. AI that people interact with, or that acts on its own, goes to the AI governance lead, with an access review for agents. Other AI goes to the product owner. <mark class="hl">If more than one rule applies, every required review must be completed before approval.</mark> Changes without AI follow the normal process.</p>
           <div class="reg-foot">
             <span class="also">Article references as amended by Regulation (EU) 2026/1744.</span>
           </div>
@@ -295,7 +295,7 @@
 
   <section class="contact" aria-labelledby="contact">
     <h2 id="contact">Let's talk</h2>
-    <p>I enjoy learning about new technology, automation and process improvement, and I'm always happy to talk about AI governance, access risk or practical AI automation. The easiest way to reach me is on LinkedIn or by email.</p>
+    <p>I&rsquo;m interested in new technology, automation and finding better ways of working. I&rsquo;m always happy to exchange ideas about AI governance, access risk and practical AI automation. You can reach me on LinkedIn or by email.</p>
     <div class="cta">
       <a class="btn primary" href="https://www.linkedin.com/in/zsofia-kalvin/">Message on LinkedIn <span class="ic" aria-hidden="true">&#8599;</span></a>
       <a class="btn" href="#contact" data-u="kalvin.zsofia" data-d="gmail.com"><span class="em-txt">kalvin.zsofia [at] gmail.com</span> <span class="ic" aria-hidden="true">@</span></a>
