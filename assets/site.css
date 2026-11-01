@@ -545,3 +545,15 @@ footer a { color: inherit; }
 .map-table td.txt b { font-weight: 600; }
 .map-table td:first-child { white-space: nowrap; }
 .map-table td.txt:first-child { white-space: normal; }
+
+/* Glossary */
+.gl-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start; }
+.gl-group { border: 1px solid var(--line); border-radius: 22px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.gl-group h3 { font-family: var(--font-display); font-weight: 700; font-size: 1rem; }
+.gl { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 0 16px; margin: 0; }
+.gl dt, .gl dd { padding-block: 9px; border-top: 1px solid var(--line); }
+.gl dt:first-of-type, .gl dt:first-of-type + dd { border-top: 0; padding-top: 0; }
+.gl dt { font-family: var(--font-mono); font-size: 0.82rem; font-weight: 500; }
+.gl dd { margin: 0; font-size: 0.92rem; color: var(--muted); min-width: 0; }
+@media (max-width: 860px) { .gl-groups { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 420px) { .gl { grid-template-columns: minmax(0, 1fr); } .gl dd { border-top: 0; padding-top: 0; } }
