@@ -79,7 +79,7 @@
     padding: 8px 14px; border-radius: 999px; transition: color .3s cubic-bezier(.32,.72,0,1), background-color .3s cubic-bezier(.32,.72,0,1);
   }
   .navlinks a:hover { color: var(--fg); background: var(--bg); }
-  .hero-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 48px 64px; align-items: center; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px 64px; align-items: center; }
   .hero-copy { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
   .role { color: var(--accent); font-weight: 600; font-size: 0.98rem; }
   .creds { display: flex; flex-wrap: wrap; gap: 8px; }
