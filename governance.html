@@ -197,27 +197,27 @@
         <figure class="flow">
           <figcaption>Where it sits in the change lifecycle</figcaption>
           <ol>
-            <li class="step src"><span>Refinement</span>PO or Scrum master attaches the screening form</li>
+            <li class="step src"><span>Refinement</span>PO or Scrum master shares the Microsoft Forms link</li>
             <li class="arrow" aria-hidden="true"></li>
             <li class="step src"><span>Screening</span>Developer answers the 9 questions</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step ai"><span>AI</span>Summary for the approver and draft registry entry</li>
+            <li class="step ai"><span>AI</span>Power Automate drafts a summary for the approver</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step human"><span>Approval</span>Approver decides, with conditions</li>
+            <li class="step human"><span>Approval</span>SharePoint approval sent to the routed approver</li>
             <li class="arrow" aria-hidden="true"></li>
             <li class="step src"><span>Release gate</span>Release blocked without approval</li>
             <li class="arrow" aria-hidden="true"></li>
-            <li class="step out"><span>Output</span>Registry entry and review date</li>
+            <li class="step out"><span>Output</span>Registry entry and stakeholders notified</li>
           </ol>
         </figure>
         <div class="case-main">
           <span class="case-label">Approach</span>
-          <p>The screening starts at refinement, before anything is built, because privacy by design and AI Act obligations are much cheaper to meet at design time than after go-live. Product owners and Scrum masters attach the form to every epic or change, and the developer answers it.</p><p>The questions follow a logical order: first whether the AI Act applies, then the company&#x27;s role, then prohibited practices, then the risk level, then privacy. Each question refers to the article it is based on, so the approver can see why it was asked. Fixed rules route the change to one approver, who decides with conditions. The release gate checks for the approval ID, and approval creates or updates the row in the AI asset registry.</p>
+          <p>The screening starts at refinement, before anything is built, because privacy by design and AI Act obligations are much cheaper to meet at design time than after go-live. Product owners and Scrum masters share a Microsoft Forms questionnaire for every epic or change, and the developer fills it in.</p><p>The questions follow a logical order: first whether the AI Act applies, then the company&#x27;s role, then prohibited practices, then the risk level, then privacy. Each question refers to the article it is based on, so the approver can see why it was asked. Fixed rules route the change to one approver, who decides with conditions. The release gate checks for the approval ID, and approval creates or updates the row in the AI asset registry.</p>
         </div>
         <div class="case-side">
           <dl class="fields">
             <dt>Stack</dt>
-            <dd class="tags"><span class="tag">Jira forms</span><span class="tag">Jira automation</span><span class="tag">LLM</span><span class="tag">Change management</span><span class="tag">AI registry</span></dd>
+            <dd class="tags"><span class="tag">Microsoft Forms</span><span class="tag">Power Automate</span><span class="tag">SharePoint lists</span><span class="tag">Approvals</span><span class="tag">Teams</span><span class="tag">LLM</span><span class="tag">Jira</span></dd>
             <dt>My role</dt>
             <dd>I designed the decision workflow, the routing rules and the approval flow, and built the anonymised example.</dd>
           </dl>
@@ -227,11 +227,72 @@
             <dt>Control</dt>
             <dd>Routing uses fixed rules, not AI, so who approves is predictable and auditable. The approver decides; the LLM only summarises and drafts.</dd>
             <dt>Traceability</dt>
-            <dd>The answers, the articles they trigger, the approver, the conditions and the approval date stay on the change ticket and link to the registry row.</dd>
+            <dd>The answers, the articles they trigger, the approver, the conditions and the approval date are kept in the SharePoint screening log and linked to the change ticket and the registry entry.</dd>
             <dt>Limits</dt>
             <dd>Screening relies on honest developer answers, so approvers spot-check them. Yes/no questions can miss edge cases, and unclear ones go to legal. This is a screening, not legal advice.</dd>
           </dl>
         </div>
+        <figure class="registry">
+          <figcaption>Power Automate flow: from form response to approval and registry entry</figcaption>
+          <ol class="wf">
+            <li class="wf-item">
+              <span class="wf-num">1</span>
+              <div class="wf-body">
+                <strong>Trigger</strong>
+                <p>When a new response is submitted in Microsoft Forms, the flow gets the response details.</p>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">2</span>
+              <div class="wf-body">
+                <strong>Log</strong>
+                <p>The answers are saved as an item in a SharePoint list, the screening log, linked to the change ticket.</p>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">3</span>
+              <div class="wf-body">
+                <strong>Route</strong>
+                <p>A condition applies the routing rules and picks the approver: legal, AI governance board, DPO, AI governance lead or product owner. Without AI or personal data, the flow closes and the normal change process continues.</p>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">4</span>
+              <div class="wf-body">
+                <strong>Summarise</strong>
+                <p>An LLM step writes a short summary of the answers and the articles they trigger, for the approver.</p>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">5</span>
+              <div class="wf-body">
+                <strong>Approve</strong>
+                <p>The flow starts an approval to the routed approver, in Teams, Outlook or the Approvals app. The approver can approve, reject or add conditions.</p>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">6</span>
+              <div class="wf-body">
+                <strong>Record</strong>
+                <p>The decision, approver, date and conditions are written back to the SharePoint item, and the approval ID is added to the change ticket.</p>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">7</span>
+              <div class="wf-body">
+                <strong>Register</strong>
+                <p>If the change includes AI and is approved, the flow creates or updates the item in the AI asset registry list.</p>
+              </div>
+            </li>
+            <li class="wf-item">
+              <span class="wf-num">8</span>
+              <div class="wf-body">
+                <strong>Notify</strong>
+                <p>The product owner, the developer and the relevant stakeholders get the result by email or Teams. Rejected or pending changes stay blocked at the release gate.</p>
+              </div>
+            </li>
+          </ol>
+        </figure>
         <figure class="registry">
           <figcaption>Decision workflow: the questions developers answer, why each one matters, and the rule behind it</figcaption>
           <ol class="wf">
