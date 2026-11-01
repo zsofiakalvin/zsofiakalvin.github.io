@@ -540,3 +540,6 @@
 .src-list span { font-size: 0.85rem; color: var(--muted); }
 footer a { color: inherit; }
 @media (max-width: 760px) { .src-groups { grid-template-columns: minmax(0, 1fr); } }
+.map-table td.map-src { white-space: normal; min-width: 11rem; }
+.map-table td.map-src .reg-link { display: inline-block; margin: 0 4px 4px 0; }
+.map-table td.txt b { font-weight: 600; }
