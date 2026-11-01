@@ -573,3 +573,5 @@ footer a { color: inherit; }
 html { scroll-behavior: smooth; }
 .cert-name a.verify { color: var(--fg); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 2px; }
 .cert-name a.verify:hover { text-decoration-color: var(--fg); }
+.cert-groups.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 760px) { .cert-groups.two { grid-template-columns: minmax(0, 1fr); } }
