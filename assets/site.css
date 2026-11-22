@@ -576,10 +576,11 @@ html { scroll-behavior: smooth; }
 .cert-groups.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 760px) { .cert-groups.two { grid-template-columns: minmax(0, 1fr); } }
 
-/* Two cert cards: rows line up across both cards */
+/* Two cert cards: rows line up across both cards.
+   The span must be 1 (heading) + the number of certs in the longest card. */
 @media (min-width: 761px) {
   .cert-groups.two { row-gap: 0; }
-  .cert-groups.two .cert-group { display: grid; grid-row: span 4; grid-template-rows: subgrid; gap: 0; }
+  .cert-groups.two .cert-group { display: grid; grid-row: span 5; grid-template-rows: subgrid; gap: 0; }
   .cert-groups.two .cert-list { display: contents; }
   .cert-groups.two .cert-group h3 { padding-bottom: 14px; }
 }
